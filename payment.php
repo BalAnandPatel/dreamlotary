@@ -1,5 +1,9 @@
 <?php include "include/header.php"; ?>
 
+  <img src="images/qrcode.jpg" width="90%">
+
+       
+
 <section class="offer_section hero_next_section-margin layout_padding">
     <div class="container">
       <div class="heading_container">

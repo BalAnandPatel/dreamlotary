@@ -42,7 +42,7 @@
 
 
   <!-- info section -->
-  <section class="info_section layout_padding">
+  <!-- <section class="info_section layout_padding">
     <div class="container">
       <div class="info_form">
 
@@ -119,7 +119,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
 <?php include "include/footer.php"; ?>
