@@ -25,9 +25,11 @@
               </svg>
             </div>
             <div class="detail-box">
+              <a href="#">
               <h6>
-                Joing Amount 100
+                Joining Amount 100
               </h6>
+              </a>
               <p>
         
               </p>
@@ -93,9 +95,11 @@
 
             </div>
             <div class="detail-box">
+              <a href="#">
               <h6>
                 Wining Amount 250
               </h6>
+              </a>
               <p>
                 
               </p>

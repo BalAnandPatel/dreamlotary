@@ -6,27 +6,49 @@
       <div class="row">
         <div class="col-md-6">
           <div class="img-box">
-            <img src="images/about-img.jpg" alt="">
+            <img src="images/about.jpg" style="border-radius: 50px;">
           </div>
         </div>
         <div class="col-md-5 col-lg-4">
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                A Few words about us
+                A Few words dream lotary
               </h2>
             </div>
             <p>
-              It is a long established fact that a reader will be distracted by the readable content of a page when
-              looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-              of letters, as opposed to using 'Content here, content here', making it look like readable English. Many
-              desktop publishing packages and web
+              <ul style="list-style-type: none;">
+              <div style="display:flex;">
+                <li>&#128073;</li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <li> Lottery is a game of chance where players purchase tickets with numbers in the hopes of winning a prize.</li>
+              </div>
+                <br>
+              <div style="display:flex;">
+                <li>&#128073;</li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <li> The winning numbers are randomly generated through various methods, such as using a machine or drawing numbers from a pool.</li>
+              </div>
+              <br>
+              <div style="display:flex;">
+                <li>&#128073;</li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <li> Lotteries are operated by governments, non-profit organizations, or private companies and are used to raise funds for various causes.</li>
+              </div>
+              <br>
+              <div style="display:flex;">
+                <li>&#128073;</li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <li> The odds of winning a lottery can vary greatly depending on the game and the number of players participating.</li>
+              </div>                
+              <br>
+              <div style="display:flex;">
+                <li>&#128073;</li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <li> While many people dream of winning the lottery, it is important to remember that it is a form of gambling and should be played responsibly.</li>
+              </div>              
+            </ul>
             </p>
-            <div>
+            <!-- <div>
               <a href="">
                 Read More
               </a>
-            </div>
+            </div> -->
 
           </div>
         </div>

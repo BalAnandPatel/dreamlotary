@@ -8,7 +8,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Brighton</title>
+  <title>Dream Lotary</title>
 
     <script src="https://kit.fontawesome.com/5220a54d1d.js" crossorigin="anonymous"></script>
 
@@ -43,7 +43,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="images/logo.png" alt="" width="100px" height="100px">
             <span style="padding-bottom: 30px;">
               Dream Lotary
@@ -56,7 +56,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="index.php"> Home </a>
                 </li>
                 <li class="nav-item">
@@ -67,6 +67,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="lotary.php">lotary </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#login.php"><i class="fa-solid fa-user"></i> Login </a>
                 </li>
               </ul>
             </div>
