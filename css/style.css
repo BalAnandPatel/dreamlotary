@@ -66,8 +66,9 @@ body {
 }
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
   color: #fefdfc;
+  font-size: 1.07vw;
   text-align: center;
   text-transform: uppercase;
 }
@@ -129,7 +130,7 @@ a:focus {
 }
 
 .navbar-brand span {
-  font-size: 24px;
+  font-size: 1.4vw;
   font-weight: 700;
   color: #fefdfc;
   margin-left: 10px;

@@ -31,6 +31,7 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style2.css">
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -41,21 +42,21 @@
 
 
     <header class="header_section">
-      <div class="container">
+      <div class="containerc">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.php">
-            <img src="images/logo.png" alt="" width="100px" height="100px">
-            <span style="padding-bottom: 30px;">
+          <!-- <a class="navbar-brand" href="index.php">
+            <img src="images/logo.png" alt="" width="50px" height="50px">
+            <span style="align-items: center;">
               Dream Lotary
             </span>
-          </a>
+          </a> -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center" style="width: 100%; justify-content: center; display: flex;">
+              <ul class="navbar-nav" style="background-color: green;">
                 <li class="nav-item">
                   <a class="nav-link" href="index.php"> Home </a>
                 </li>
@@ -63,8 +64,38 @@
                   <a class="nav-link" href="about.php"> About </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="payment.php"> Payment </a>
+                  <a class="nav-link" href="play.php"> Play Online </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="results.php"> Result </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="check-numbers.php"> Check Tickets </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="ticket-generator.php"> Ticket Generator </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="information.php"> Information </a>
+                    <div class="dropdown-content">
+                      <a href="how-to-play.php">How to Play</a><br><br>
+                      <a href="prizes.php">Prizes</a><br><br>
+                      <a href="how-to-claim-prizes.php">How to Claim</a><br><br>
+                      <a href="faq.php">FAQ</a><br><br>
+                      <a href="rules.php">Rules</a><br><br>
+                      <a href="competitions.php">Competitions</a><br><br>
+                      <a href="hot-and-cold-numbers.php">Statics</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="bumper-draw.php"> Bumper Draws </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="winners.php"> Winners </a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="payment.php"> Payment </a>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="lotary.php">lotary </a>
                 </li>
@@ -77,4 +108,28 @@
         </nav>
       </div>
     </header>
+    <div class="containerc" style="justify-content: center; display: flex;">
+      <img src="images/lottery-banner.png" width="50%">
+    </div>
     
+    <style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
