@@ -39,7 +39,9 @@
 
 <body>
 
-
+    <div class="containerc" style="justify-content: center; display: flex;">
+      <img src="images/bann.png" width="100%">
+    </div>
 
     <header class="header_section">
       <div class="containerc">
@@ -108,9 +110,7 @@
         </nav>
       </div>
     </header>
-    <div class="containerc" style="justify-content: center; display: flex;">
-      <img src="images/lottery-banner.png" width="50%">
-    </div>
+
     
     <style>
 .dropdown {
