@@ -1,8 +1,7 @@
 <?php
-
 include "include/header.php";
 
-$url = $URL."notification/read_notification.php";
+$url = $URL."ticket/read_ticket.php";
 $data = array();
 //print_r($data);
 $postdata = json_encode($data);
@@ -22,23 +21,23 @@ $result = json_decode($response);
     <section class="content-header">
       <div class="container-fluid">
 
-        <?php if(isset($_SESSION['activity_delete_post'])){ ?>
+        <?php if(isset($_SESSION['ticket_delete_success'])){ ?>
 
-                 <div class="alert alert-danger" id="success-alert" role="alert">
-                  <?php echo $_SESSION['activity_delete_post']; 
-                  unset($_SESSION['activity_delete_post']); ?>
+                 <div class="alert alert-success" id="success-alert" role="alert">
+                  <?php echo $_SESSION['ticket_delete_success']; 
+                  unset($_SESSION['ticket_delete_success']); ?>
                  </div>
 
                 <?php } ?>
 
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Notification details</h1>
+            <!-- <h1>Notification details</h1> -->
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Notification details</li>
+              <li class="breadcrumb-item active">Ticket List</li>
             </ol>
           </div>
         </div>
@@ -53,7 +52,7 @@ $result = json_decode($response);
             
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Activity details</h3>
+                <h3 class="card-title">Ticket details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -61,8 +60,9 @@ $result = json_decode($response);
                   <thead>
                   <tr class="table-warning">
                     <th>S.N</th>
-                    <th>Notification</th>
-                    <th>Notification PDF</th>
+                    <th>Ticket Amount</th>
+                    <th>Lotary Amount</th>
+                    <th>Lotary Number</th>
                     <th>Actions</th>
                 
                   </tr>
@@ -80,10 +80,11 @@ $result = json_decode($response);
 
                   <tr>
                     <td class="col-md-1"><?php echo ++$counter; ?> </td>
-                    <td><?php echo $value1->n_title; ?></td>
-                    <td class="w-25"><a href="image/notification_pdf/<?php echo $value1->id;?>/pdf/<?php echo $value1->id;?>.pdf" target="_blank"><button class="btn btn-secondary btn-sm text-white rounded-0">View PDF</button></a></td>
+                    <td><?php echo $value1->ticketAmount; ?></td>
+                    <td><?php echo $value1->lotaryAmount; ?></td>
+                    <td><?php echo $value1->lotaryNum; ?></td>
                     <td class="col-md-1">
-                      <form action="action/notification_delete_post.php" method="post">
+                      <form action="action/ticket_delete_post.php" method="post">
                       <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
                       <button type="submit" name="delete" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</button>
                      </form>

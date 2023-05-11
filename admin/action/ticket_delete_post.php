@@ -6,9 +6,7 @@
 
   $id = $_POST['id'];
 
-  $file = "../image/".$id."/pdf/".$id.".pdf";
-
-  $url = $URL."notification/delete_notification.php";
+  $url = $URL."ticket/delete_ticket.php";
 
   $data = array('id'=>$id);
   //print_r($data);
@@ -23,16 +21,10 @@
   //print_r($result);
 
   if($result->message=="Record has been deleted."){
-
-   unlink($file);
-   rmdir("../image/".$id."/pdf");
-   rmdir("../image/".$id);
-
-  }else{
-  header('location:../notification_list.php');
+    $_SESSION['ticket_delete_success']="Record deleted successfully";
+    header('location:../ticket_list.php');
   }
-
-  header('location:../notification_list.php');
+  header('location:../ticket_list.php');
 
   }
 

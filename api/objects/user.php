@@ -1,15 +1,17 @@
 <?php 
 
- class exam{
+ class User{
+
     private $conn;
-    private $table_name = "exam";
-    private $table_registration = "registration";
-    private $table_payment = "payment";
+    private $table_name = "user_login";
+    // private $table_registration = "registration";
+    // private $table_payment = "payment";
+
     public function __construct($db){
         $this->conn = $db;
     }
 
-    public $id,$full_name,$registration_no,$dob,$mobile,$exam_name,$type,$age,$total_post,$amount,$eligibility,$status,$exam_date_start,$exam_date_end,$result_date,$admit_card_date,$created_by,$created_on,$updated_on,$updated_by;
+    public $id, $userName, $userEmail, $userPass, $userMobile, $status, $createdOn, $createdBy, $updatedOn, $updatedBy;
     
     public function read_only_examname(){
         $query="Select exam_name from " .$this->table_name .  " where exam_name=:exam_name";
@@ -91,55 +93,42 @@
         return $stmt;
     }
 
-    public function insert_exam(){
+    public function insertUser(){
 
         $query="INSERT INTO
         " . $this->table_name . "
-    SET
-             exam_name=:exam_name,
-             type=:type,
-             amount=:amount, 
-             eligibility=:eligibility,
-             age=:age,
-             total_post=:total_post,
-             exam_date_start=:exam_date_start,
-             exam_date_end=:exam_date_end,
+    SET      userType=:userType,
+             userRole=:userRole,
+             userName=:userName,
+             userEmail=:userEmail,
+             userMobile=:userMobile, 
+             userPass=:userPass
              status=:status,
-             result_date=:result_date,
-             admit_card_date=:admit_card_date,
-             created_on=:created_on,
-             created_by=:created_by
+             createdOn=:createdOn,
+             createdBy=:createdBy
                ";
 
         $stmt = $this->conn->prepare($query);
-        $this->exam_name=htmlspecialchars(strip_tags($this->exam_name));
-        $this->type=htmlspecialchars(strip_tags($this->type));
-        $this->amount=htmlspecialchars(strip_tags($this->amount));
-        $this->age=htmlspecialchars(strip_tags($this->age));
-        $this->total_post=htmlspecialchars(strip_tags($this->total_post));
-        $this->eligibility=htmlspecialchars(strip_tags($this->eligibility));
-        $this->exam_date_end=htmlspecialchars(strip_tags($this->exam_date_end));
-        $this->exam_date_start=htmlspecialchars(strip_tags($this->exam_date_start));
-        $this->admit_card_date=htmlspecialchars(strip_tags($this->admit_card_date));
+        $this->userType=htmlspecialchars(strip_tags($this->userType));
+        $this->userRole=htmlspecialchars(strip_tags($this->userRole));
+        $this->userName=htmlspecialchars(strip_tags($this->userName));
+        $this->userMobile=htmlspecialchars(strip_tags($this->userMobile));
+        $this->userEmail=htmlspecialchars(strip_tags($this->userEmail));
+        $this->userPass=htmlspecialchars(strip_tags($this->userPass));
         $this->status=htmlspecialchars(strip_tags($this->status));
-        $this->result_date=htmlspecialchars(strip_tags($this->result_date));
-        $this->created_by=htmlspecialchars(strip_tags($this->created_by));
-        $this->created_on=htmlspecialchars(strip_tags($this->created_on));
+        $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
+        $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
 
 
-        $stmt->bindParam(":exam_name", $this->exam_name);
-        $stmt->bindParam(":type", $this->type);
-        $stmt->bindParam(":amount", $this->amount);
-        $stmt->bindParam(":age", $this->age);
-        $stmt->bindParam(":total_post", $this->total_post);
-        $stmt->bindParam(":eligibility", $this->eligibility);
-        $stmt->bindParam(":exam_date_end", $this->exam_date_end);
-        $stmt->bindParam(":exam_date_start", $this->exam_date_start);
+        $stmt->bindParam(":userRole", $this->userRole);
+        $stmt->bindParam(":userType", $this->userType);
+        $stmt->bindParam(":userName", $this->userName);
+        $stmt->bindParam(":userMobile", $this->userMobile);
+        $stmt->bindParam(":userEmail", $this->userEmail);
+        $stmt->bindParam(":userPass", $this->userPass);
         $stmt->bindParam(":status", $this->status);
-        $stmt->bindParam(":admit_card_date", $this->admit_card_date);
-        $stmt->bindParam(":result_date", $this->result_date);
-        $stmt->bindParam(":created_by", $this->created_by);
-        $stmt->bindParam(":created_on", $this->created_on);
+        $stmt->bindParam(":createdOn", $this->createdOn);
+        $stmt->bindParam(":createdBy", $this->createdBy);
        
          // execute query
          if($stmt->execute()){

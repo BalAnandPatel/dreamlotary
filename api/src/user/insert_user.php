@@ -10,12 +10,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../config/database.php';
   
 // instantiate reg object
-include_once '../../objects/exam.php';
+include_once '../../objects/user.php';
   
 $database = new Database();
 $db = $database->getConnection();
   
-$exam = new exam($db);
+$insert_user = new User($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -23,28 +23,28 @@ $data = json_decode(file_get_contents("php://input"));
 // make sure data is not empty
 if(
     
-    !empty($data->exam_name) &&
-    !empty($data->amount)
+    !empty($data->userType) &&
+    !empty($data->userRole) &&
+    !empty($data->userName) &&
+    !empty($data->userMobile) &&
+    !empty($data->userEmail) &&
+    !empty($data->userPass)
 )
 
 {
-    $exam->exam_name = $data->exam_name;
-    $exam->amount = $data->amount;
-    $exam->type = $data->type;
-    $exam->eligibility = $data->eligibility;
-    $exam->exam_date_start = $data->exam_date_start;
-    $exam->exam_date_end = $data->exam_date_end;
-    $exam->age = $data->age;
-    $exam->total_post = $data->total_post;
-    $exam->status = $data->status;
-    $exam->admit_card_date = $data->admit_card_date;
-    $exam->result_date = $data->result_date;
-    $exam->created_by = $data->created_by;
-    $exam->created_on = $data->created_on;
+    $insert_user->userType = $data->userType;
+    $insert_user->userRole = $data->userRole;
+    $insert_user->userName = $data->userName;
+    $insert_user->userEmail = $data->userEmail;
+    $insert_user->userMobile = $data->userMobile;
+    $insert_user->userPass = $data->userPass;
+    $insert_user->status = $data->status;
+    $insert_user->createdOn = $data->createdOn;
+    $insert_user->createdBy = $data->createdBy;
        
     //var_dump($exam);
     // create the reg
-    if($exam->insert_exam()){
+    if($insert_user->insertUser()){
 
         http_response_code(201);
         echo json_encode(array("message"=>"Successfull"));
@@ -55,7 +55,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to insert exam"));
+        echo json_encode(array("message" => "Unable to insert user"));
     }
 }
   
@@ -66,6 +66,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to insert exam. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to insert user. Data is incomplete."));
 }
 ?>

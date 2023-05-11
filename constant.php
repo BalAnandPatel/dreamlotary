@@ -9,7 +9,7 @@ $BASE_URL="website/index.php";
 // $GALLERY_IMG_PATH="http://krishilimited.com/admin/image/gallery/";
 
 // website file path on localhost
-$URL="http://localhost/Krishilimited/krishilimitedfinal/api/src/";
+$URL="http://localhost/dreamlotary/api/src/";
 $ADMIN_IMG_PATH="http://localhost/Krishilimited/krishilimitedfinal/user/img/";
 $GALLERY_IMG_PATH="http://localhost/Krishilimited/krishilimitedfinal/admin/image/gallery/";
 

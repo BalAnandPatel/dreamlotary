@@ -8,24 +8,24 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   
 // include database and object file
 include_once '../../config/database.php';
-include_once '../../objects/notification.php';
+include_once '../../objects/ticket.php';
   
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
   
 // prepare admin object
-$notification = new Notice($db);
+$delete_ticket = new Ticket($db);
   
 // get admin id
 $data = json_decode(file_get_contents("php://input"));
 //print_r($data);  
 
 // set admin id to be deleted
-$notification->id = $data->id;
+$delete_ticket->id = $data->id;
   
 // delete the admin
-if($notification->delete_notification()){
+if($delete_ticket->deleteTicket()){
   
     // set response code - 200 ok
     http_response_code(200);

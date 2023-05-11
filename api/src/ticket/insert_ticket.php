@@ -10,12 +10,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../config/database.php';
   
 // instantiate reg object
-include_once '../../objects/notification.php';
+include_once '../../objects/ticket.php';
   
 $database = new Database();
 $db = $database->getConnection();
   
-$notification = new Notice($db);
+$insert_ticket = new Ticket($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -23,19 +23,22 @@ $data = json_decode(file_get_contents("php://input"));
 // make sure data is not empty
 if(
 
-   !empty($data->n_title) 
+   !empty($data->ticketAmount) &&
+   !empty($data->lotaryAmount)  
 )
 
 {
-    $notification->n_title = $data->n_title;
-    // $notification->n_description = $data->n_description;
-    $notification->created_by = $data->created_by;
-    $notification->created_on = $data->created_on;
+    $insert_ticket->ticketAmount = $data->ticketAmount;
+    $insert_ticket->lotaryAmount = $data->lotaryAmount;
+    $insert_ticket->lotaryNum = $data->lotaryNum;
+    $insert_ticket->status = $data->status;
+    $insert_ticket->createdOn = $data->createdOn;
+    $insert_ticket->createdBy = $data->createdBy;
 
     
     //var_dump($reg);
     // create the reg
-    if($notification->insert_notification()){
+    if($insert_ticket->insertTicket()){
 
         http_response_code(201);
         echo json_encode(array("message" => "Successfull"));
@@ -46,7 +49,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create notification"));
+        echo json_encode(array("message" => "Unable to create ticket"));
     }
 }
   
@@ -57,6 +60,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to create notification. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create ticket. Data is incomplete."));
 }
 ?>

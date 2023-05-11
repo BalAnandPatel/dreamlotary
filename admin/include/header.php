@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <title>SHYAMAVSVSS KRISHI LIMITED</title>
+  <title>Dream Lotary</title>
   <!-- jsGrid -->
   <link rel="stylesheet" href="../common/plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="../common/plugins/jsgrid/jsgrid-theme.min.css">
@@ -146,22 +146,22 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hand-holding-usd"></i>
               <p>
-                Vacancy Details
+                Ticket Entry
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="insert_exam.php" class="nav-link">
+                <a href="ticket_entry.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Insert Vacancy</p>
+                  <p>Generate Ticket</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="exam_list.php" class="nav-link">
+                <a href="ticket_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Vacancy List</p>
+                  <p>Ticket List</p>
                 </a>
               </li>
               <!-- <li class="nav-item">
