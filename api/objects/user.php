@@ -4,27 +4,29 @@
 
     private $conn;
     private $table_name = "user_login";
-    // private $table_registration = "registration";
+    private $user_account = "user_account";
     // private $table_payment = "payment";
 
     public function __construct($db){
         $this->conn = $db;
     }
 
-    public $id, $userName, $userEmail, $userPass, $userMobile, $status, $createdOn, $createdBy, $updatedOn, $updatedBy;
+    public $id, $userId, $userName, $userEmail, $userPass, $userMobile, $accountHolder, $bankName, $branchName, $ifscCode, $accountNum, $googlePayNum, $phonePayNum, $status, $createdOn, $createdBy, $updatedOn, $updatedBy;
     
-    public function read_only_examname(){
-        $query="Select exam_name from " .$this->table_name .  " where exam_name=:exam_name";
+    public function readMaxUserId(){
+        $query="Select max(id) as userId from " .$this->table_name;
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":exam_name", $this->exam_name); 
+        // $stmt->bindParam(":userName", $this->userName); 
         $stmt->execute();
         return $stmt;
     }
 
-    public function read_exam(){
-        $query="Select  id,exam_name,type,age, amount,status,exam_date_start, result_date,admit_card_date,created_by,created_on
-        from " .$this->table_name .  " where status=1";
+    public function readUserProfile(){
+     $query="Select user.id, userType, userRole, userName, userMobile, userEmail, user.status, user.createdOn, user.createdBy, accountHolder, bankName, branchName, ifscCode, accountNum, googlePayNum, phonePayNum
+        from " .$this->table_name. " as user LEFT JOIN " .$this->user_account ." as ua ON user.id=ua.userId where user.status=1 and user.userType=:userType and userEmail=:userEmail";
         $stmt = $this->conn->prepare($query); 
+        $stmt->bindParam(":userType", $this->userType);
+        $stmt->bindParam(":userEmail", $this->userEmail);
         $stmt->execute();
         return $stmt;
     }
@@ -51,17 +53,7 @@
         return $stmt;
     }
 
-    //  public function read_payment_varify_details(){
-    //     $query="Select  reg.id,reg.full_name,dob,mobile,reg.exam_name,reg.status,
-    //     reg.created_on, reg.created_by from " .$this->table_registration ." as reg
-    //     where reg.registration_no=:registration_no and reg.mobile=:mobile and reg.dob=:dob";
-    //     $stmt = $this->conn->prepare($query); 
-    //     $stmt->bindParam(":registration_no", $this->registration_no);
-    //     $stmt->bindParam(":mobile", $this->mobile);
-    //     $stmt->bindParam(":dob", $this->dob);
-    //     $stmt->execute();
-    //     return $stmt;
-    // }
+ 
 
     public function read_print_varify_details(){
        $query="Select  pay.user_id as id,reg.full_name,reg.registration_no,dob,mobile,reg.exam_name,transaction_id,amount, pay.status,pay.created_on, pay.created_by from " .$this->table_registration . " as reg left join "
@@ -95,14 +87,14 @@
 
     public function insertUser(){
 
-        $query="INSERT INTO
+           $query="INSERT INTO
         " . $this->table_name . "
     SET      userType=:userType,
              userRole=:userRole,
              userName=:userName,
              userEmail=:userEmail,
              userMobile=:userMobile, 
-             userPass=:userPass
+             userPass=:userPass,
              status=:status,
              createdOn=:createdOn,
              createdBy=:createdBy
@@ -126,6 +118,36 @@
         $stmt->bindParam(":userMobile", $this->userMobile);
         $stmt->bindParam(":userEmail", $this->userEmail);
         $stmt->bindParam(":userPass", $this->userPass);
+        $stmt->bindParam(":status", $this->status);
+        $stmt->bindParam(":createdOn", $this->createdOn);
+        $stmt->bindParam(":createdBy", $this->createdBy);
+       
+         // execute query
+         if($stmt->execute()){
+            return true;
+        }
+      
+        return false;
+    }
+
+     public function insertUserAccount(){
+
+           $query="INSERT INTO
+        " . $this->user_account . "
+    SET      userId=:userId,
+             status=:status,
+             createdOn=:createdOn,
+             createdBy=:createdBy
+               ";
+
+        $stmt = $this->conn->prepare($query);
+        $this->userId=htmlspecialchars(strip_tags($this->userId));
+        $this->status=htmlspecialchars(strip_tags($this->status));
+        $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
+        $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
+
+
+        $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":createdOn", $this->createdOn);
         $stmt->bindParam(":createdBy", $this->createdBy);

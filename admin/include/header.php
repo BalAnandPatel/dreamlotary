@@ -44,7 +44,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../website/assets/images/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="image/logo/adminlogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -99,7 +99,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="../website/assets/images/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
+      <img src="image/logo/adminlogo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Admin Control</span>
     </a>
 
@@ -144,7 +144,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <i class="nav-icon fa fa-address-card"></i>
               <p>
                 Ticket Entry
                 <i class="right fas fa-angle-left"></i>
@@ -175,18 +175,18 @@
           
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-bell"></i>
+              <i class="nav-icon fa fa-user-circle"></i>
               <p>
-                Notification
+                User Profile
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="insert_notification.php" class="nav-link">
+                <a href="user_profile.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Add Notification</p>
+                  <p>Update Profile</p>
                 </a>
               </li>
               <li class="nav-item">

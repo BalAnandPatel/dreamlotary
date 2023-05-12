@@ -1,4 +1,4 @@
-
+<?php include "../constant.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +22,20 @@
       <a href="user_registration.php" class="h1"><b>Dream</b>Lotary</a>
     </div>
     <div class="card-body">
+      <?php 
+        if(isset($_SESSION['user_reg_success'])){
+        echo '<div class="alert alert-success text-center">'.$_SESSION['user_reg_success'].'</div>';
+        unset($_SESSION['user_reg_success']);
+      }else if(isset($_SESSION['user_reg_error'])){
+        echo '<div class="alert alert-danger text-center">'.$_SESSION['user_reg_error'].'</div>';
+          unset($_SESSION['user_reg_error']);
+      } 
+      ?>
       <p class="login-box-msg">Register a new membership</p>
 
       <form action="action/user_registration_post.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="userName" placeholder="Full name" required>
+          <input type="text" class="form-control" name="userName" placeholder="Full name" autocomplete="off"  required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -34,7 +43,7 @@
           </div>
         </div>
          <div class="input-group mb-3">
-          <input type="number" class="form-control" name="userMobile" placeholder="Mobile No">
+          <input type="number" class="form-control" name="userMobile" placeholder="Mobile No" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -42,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="userEmail" placeholder="Email">
+          <input type="email" class="form-control" name="userEmail" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

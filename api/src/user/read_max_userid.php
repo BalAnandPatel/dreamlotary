@@ -10,59 +10,43 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // include database and object files
 include_once '../../config/database.php';
-include_once '../../objects/exam.php';
+include_once '../../objects/user.php';
   
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
   
 // initialize object
-$exam = new exam($db);
+$read_maxuserId = new User($db);
   
 $data = json_decode(file_get_contents("php://input"));
-//print_r($data);
 
-$exam->exam_name=$data->exam_name;
-// $exam->id=$data->id;
-
-$stmt = $exam->read_exam_details();
+$stmt = $read_maxuserId->readMaxUserId();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
 if($num>0){
   
     // products array
-    $exams_arr=array();
-    $exams_arr["records"]=array();
+    $read_maxuserIds_arr=array();
+    $read_maxuserIds_arr["records"]=array();
 
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
      
         extract($row);
   
-        $exam_item=array(
+        $read_maxuserId_item=array(
 
-            "id"=>$id,
-            "exam_name"=>$exam_name,
-            "amount"=>$amount,
-            "type"=>$type,
-            "age"=>$age,
-            "eligibility"=>$eligibility,
-            "total_post"=>$total_post,
-            "result_date"=>$result_date,
-            "exam_date_start"=>$exam_date_start,
-             "exam_date_end"=>$exam_date_end,
-            "admit_card_date"=>$admit_card_date,
-            "status"=>$status,
-            "created_by"=>$created_by,
-            "created_on"=>$created_on 
-        );
+            "userId" => $userId
+
+             );
   
-        array_push($exams_arr["records"], $exam_item);
+        array_push($read_maxuserIds_arr["records"], $read_maxuserId_item);
     }
   
     // show products data in json format
-    echo json_encode($exams_arr);
+    echo json_encode($read_maxuserIds_arr);
 
      // set response code - 200 OK
      http_response_code(200);
@@ -76,7 +60,7 @@ else{
   
     // tell the user no products found
     echo json_encode(
-        array("message" => "No Exam details found.")
+        array("message" => "No max userid found.")
     );
 }
 ?>

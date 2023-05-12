@@ -10,51 +10,62 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // include database and object files
 include_once '../../config/database.php';
-include_once '../../objects/exam.php';
+include_once '../../objects/user.php';
   
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
   
 // initialize object
-$exam = new exam($db);
+$read_userprofile = new User($db);
   
 $data = json_decode(file_get_contents("php://input"));
+//print_r($data);
 
-$stmt = $exam->read_exam();
+$read_userprofile->userType=$data->userType;
+$read_userprofile->userEmail=$data->userEmail;
+// $exam->id=$data->id;
+
+$stmt = $read_userprofile->readUserProfile();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
 if($num>0){
   
     // products array
-    $exams_arr=array();
-    $exams_arr["records"]=array();
+    $read_userprofiles_arr=array();
+    $read_userprofiles_arr["records"]=array();
 
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
      
         extract($row);
   
-        $exam_item=array(
+        $read_userprofile_item=array(
 
-            "id" => $id,
-            "exam_name"=>$exam_name,
-            "type"=>$type,
-            "result_date"=>$result_date,
-            "exam_date_start"=>$exam_date_start,
-            "admit_card_date"=>$admit_card_date,
+            "id"=>$id,
+            "userType"=>$userType,
+            "userRole"=>$userRole,
+            "userName"=>$userName,
+            "userEmail"=>$userEmail,
+            "userMobile"=>$userMobile,
             "status"=>$status,
-            "created_by"=>$created_by,
-            "created_on"=>$created_on
-
-             );
+            "accountHolder"=>$accountHolder,
+            "bankName"=>$bankName,
+            "branchName"=>$branchName,
+            "ifscCode"=>$ifscCode,
+            "googlePayNum"=>$googlePayNum,
+            "phonePayNum"=>$phonePayNum,
+            "accountNum"=>$accountNum,
+            "createdOn"=>$createdOn,
+            "createdBy"=>$createdBy 
+        );
   
-        array_push($exams_arr["records"], $exam_item);
+        array_push($read_userprofiles_arr["records"], $read_userprofile_item);
     }
   
     // show products data in json format
-    echo json_encode($exams_arr);
+    echo json_encode($read_userprofiles_arr);
 
      // set response code - 200 OK
      http_response_code(200);
@@ -68,7 +79,7 @@ else{
   
     // tell the user no products found
     echo json_encode(
-        array("message" => "No user found.")
+        array("message" => "No user profile details found.")
     );
 }
 ?>
