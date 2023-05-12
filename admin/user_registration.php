@@ -43,7 +43,7 @@
           </div>
         </div>
          <div class="input-group mb-3">
-          <input type="number" class="form-control" name="userMobile" placeholder="Mobile No" autocomplete="off">
+          <input type="number" class="form-control" name="userMobile" placeholder="Mobile No" autocomplete="off" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
