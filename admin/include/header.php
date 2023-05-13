@@ -123,20 +123,7 @@
               <li class="nav-item">
                 <a href="pending registration_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Pending Registration Details</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="approved_registration_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Active Registration Details</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="rejected_registration_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Rejected Registration Details</p>
+                  <p>Registerd Users</p>
                 </a>
               </li>
             </ul>
@@ -189,12 +176,12 @@
                   <p>Update Profile</p>
                 </a>
               </li>
-              <li class="nav-item">
+             <!--  <li class="nav-item">
                 <a href="notification_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Notification List</p>
                 </a>
-              </li>
+              </li> -->
               <!-- <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -204,7 +191,7 @@
             </ul>
           </li>
           
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fa fa-upload"></i>
               <p> 
@@ -226,15 +213,15 @@
                   <p>Gallery Records</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
+               <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Rejected Donation</p>
                 </a>
-              </li> -->
+              </li> 
             </ul>
           </li>
-        
+         -->
         
         </ul>
       </nav>

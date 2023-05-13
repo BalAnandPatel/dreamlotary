@@ -84,9 +84,13 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotaryAmount; ?></td>
                     <td><?php echo $value1->lotaryNum; ?></td>
                     <td class="col-md-1">
-                      <form action="action/ticket_delete_post.php" method="post">
+                      <form action="action/ticket_purchase_post.php" method="post">
                       <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
-                      <button type="submit" name="delete" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</button>
+                      <?php if($value1->status=='1'){?>
+                      <button type="submit" name="submit" class="btn btn-success">Purchase</button>
+                      <?php }else if($value1->status=='2'){?>
+                      <button type="button" class="btn btn-success" disabled>Purchased</button>
+                      <?php } ?>
                      </form>
                     </td>
                   </tr>

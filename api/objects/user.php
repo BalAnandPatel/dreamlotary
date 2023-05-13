@@ -31,30 +31,16 @@
         return $stmt;
     }
 
-    public function read_exam_details(){
-        $query="Select  id, exam_name, type, age, total_post, eligibility, amount, status, exam_date_start, exam_date_end, result_date, admit_card_date, created_by, created_on
-        from " .$this->table_name . " where exam_name=:exam_name";
+    public function readAllUsersDetail(){
+        $query="Select id, userType, userRole, userName, userMobile, userEmail, status, createdOn, createdBy
+        from " .$this->table_name;
         $stmt = $this->conn->prepare($query); 
-        $stmt->bindParam(":exam_name", $this->exam_name);
-        // $stmt->bindParam(":id", $this->id);
-        $stmt->execute();
-        return $stmt;
-    }
-
-     public function read_payment_varify_details(){
-       $query="Select  reg.id,reg.full_name,reg.registration_no,dob,mobile,reg.exam_name,amount,reg.status,
-        reg.created_on, reg.created_by from " .$this->table_registration . " as reg left join "
-         . $this->table_name . " as exam on reg.exam_name=exam.exam_name 
-        where reg.registration_no=:registration_no and reg.mobile=:mobile";
-        $stmt = $this->conn->prepare($query); 
-        $stmt->bindParam(":registration_no", $this->registration_no);
-        $stmt->bindParam(":mobile", $this->mobile);
+        // $stmt->bindParam(":exam_name", $this->exam_name);
         $stmt->execute();
         return $stmt;
     }
 
  
-
     public function read_print_varify_details(){
        $query="Select  pay.user_id as id,reg.full_name,reg.registration_no,dob,mobile,reg.exam_name,transaction_id,amount, pay.status,pay.created_on, pay.created_by from " .$this->table_registration . " as reg left join "
          . $this->table_payment . " as pay on reg.id=pay.user_id 
@@ -161,61 +147,46 @@
     }
 
 
-
-    function update_exam(){
+    function updateUserProfile(){
   
         // query to insert record
        $query = "UPDATE 
-                    " . $this->table_name . "
+                    " . $this->user_account . "
                 SET
-                   exam_name=:exam_name,
-                   type=:type,
-                   amount=:amount, 
-                   eligibility=:eligibility,
-                   age=:age,
-                   total_post=:total_post,
-                   exam_date_start=:exam_date_start,
-                   exam_date_end=:exam_date_end,
-                   result_date=:result_date,
-                   admit_card_date=:admit_card_date,
-                   status=:status,
-                   updated_on=:updated_on,
-                   updated_by=:updated_by 
-                   where id=:id";
+                   accountHolder=:accountHolder,
+                   bankName=:bankName,
+                   branchName=:branchName, 
+                   ifscCode=:ifscCode,
+                   accountNum=:accountNum,
+                   phonePayNum=:phonePayNum,
+                   googlePayNum=:googlePayNum,
+                   updatedOn=:updatedOn,
+                   updatedBy=:updatedBy
+                   where userId=:userId";
                           
         // prepare query
         $stmt = $this->conn->prepare($query);
-        $this->exam_name=htmlspecialchars(strip_tags($this->exam_name));
-        $this->type=htmlspecialchars(strip_tags($this->type));
-        $this->amount=htmlspecialchars(strip_tags($this->amount));
-        $this->age=htmlspecialchars(strip_tags($this->age));
-        $this->total_post=htmlspecialchars(strip_tags($this->total_post));
-        $this->eligibility=htmlspecialchars(strip_tags($this->eligibility));
-        $this->exam_date_end=htmlspecialchars(strip_tags($this->exam_date_end));
-        $this->exam_date_start=htmlspecialchars(strip_tags($this->exam_date_start));
-        $this->admit_card_date=htmlspecialchars(strip_tags($this->admit_card_date));
-        $this->result_date=htmlspecialchars(strip_tags($this->result_date));
-        $this->status=htmlspecialchars(strip_tags($this->status));
-        $this->updated_on=htmlspecialchars(strip_tags($this->updated_on));
-        $this->updated_by=htmlspecialchars(strip_tags($this->updated_by));
-        
-        
+        $this->accountHolder=htmlspecialchars(strip_tags($this->accountHolder));
+        $this->bankName=htmlspecialchars(strip_tags($this->bankName));
+        $this->branchName=htmlspecialchars(strip_tags($this->branchName));
+        $this->ifscCode=htmlspecialchars(strip_tags($this->ifscCode));
+        $this->accountNum=htmlspecialchars(strip_tags($this->accountNum));
+        $this->phonePayNum=htmlspecialchars(strip_tags($this->phonePayNum));
+        $this->googlePayNum=htmlspecialchars(strip_tags($this->googlePayNum));
+        $this->updatedOn=htmlspecialchars(strip_tags($this->updatedOn));
+        $this->updatedBy=htmlspecialchars(strip_tags($this->updatedBy));
+         
         //bind values
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":exam_name", $this->exam_name);
-        $stmt->bindParam(":type", $this->type);
-        $stmt->bindParam(":amount", $this->amount);
-        $stmt->bindParam(":age", $this->age);
-        $stmt->bindParam(":total_post", $this->total_post);
-        $stmt->bindParam(":eligibility", $this->eligibility);
-        $stmt->bindParam(":exam_date_end", $this->exam_date_end);
-        $stmt->bindParam(":exam_date_start", $this->exam_date_start);
-        $stmt->bindParam(":admit_card_date", $this->admit_card_date);
-        $stmt->bindParam(":result_date", $this->result_date);
-        $stmt->bindParam(":status", $this->status);
-        $stmt->bindParam(":updated_on", $this->updated_on);
-        $stmt->bindParam(":updated_by", $this->updated_by);
-        
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":accountHolder", $this->accountHolder);
+         $stmt->bindParam(":bankName", $this->bankName);
+        $stmt->bindParam(":branchName", $this->branchName);
+        $stmt->bindParam(":ifscCode", $this->ifscCode);
+        $stmt->bindParam(":accountNum", $this->accountNum);
+        $stmt->bindParam(":phonePayNum", $this->phonePayNum);
+        $stmt->bindParam(":googlePayNum", $this->googlePayNum);
+        $stmt->bindParam(":updatedOn", $this->updatedOn);
+        $stmt->bindParam(":updatedBy", $this->updatedBy);   
       
         // execute query
         if($stmt->execute()){

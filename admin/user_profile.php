@@ -55,27 +55,34 @@ $result = json_decode($response);
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <?php 
+        if(isset($_SESSION['profileupdate_success'])){
+         echo '<div class="alert alert-success rounded-0">'.$_SESSION['profileupdate_success'].'</div>';
+         unset($_SESSION['profileupdate_success']);
+        } ?>
         <div class="row">
           <div class="col-md-3">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="image/logo/user_icon.png"
-                       alt="User profile picture">
-                </div>
-                    
-                <?php 
+               <?php 
                      foreach($result as $key => $value){
                      foreach($value as $key1 => $value1)
                       {
                     ?>
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="<?php echo 'image/user_profile/'.$value1->id.'/user_img_'.$value1->id.'.png' ?>"
+                       alt="User profile picture">
+                </div>
 
                 <h3 class="profile-username text-center"></h3>
-
-                <p class="text-muted text-center"></p>
+                <p class="text-muted text-center">
+                  <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modal-default">
+                    <i class="fas fa-upload pr-2"></i>Upload Profile Picture
+                  </button>
+                </p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   
@@ -90,12 +97,15 @@ $result = json_decode($response);
                   </li>
 
                 </ul>
-                 <?php
+                <form action="user_profile_update.php" method="post">
+                <input type="hidden" name="userEmail" value="<?php echo $value1->userEmail; ?>">
+                <button type="submit" class="btn btn-primary"><b>Update Account Details</b></button>
+               </form>
+              </div>
+               <?php
                       }
                     } 
                  ?>
-                <a href="profile_update.php" class="btn btn-primary btn-block"><b>Update Account Details</b></a>
-              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -125,49 +135,48 @@ $result = json_decode($response);
                   <table id="example" class="table table-bordered table-striped">
                     <?php// }?>
                                  <?php 
-								               
-                                  // foreach($result as $key => $value){
-                                  // foreach($value as $key1 => $value1)
-                                  //  {
+                                  foreach($result as $key => $value){
+                                  foreach($value as $key1 => $value1)
+                                   {
                                  ?>              
                                   <thead>
 				      			               <tr>
 				      			                <th class="col-md-3">Account Holder</th>
-				      			                 <td></td>
+				      			                 <td><?php echo $value1->accountHolder; ?></td>
                                     </tr>
                                     <tr>
                                     <th class="col-md-3">Bank Name</th>
-				      			                <td></td>
+				      			                <td><?php echo $value1->bankName; ?></td>
                                    </tr>
                                    <tr>
                                    <th class="col-md-3">Branch Name</th>
-				      			                <td></td>
+				      			                <td><?php echo $value1->branchName; ?></td>
                                    </tr>
 				      			                <tr>
 				      			                 <th class="col-md-3">IFSC Code</th>
-				      			                 <td></td>
+				      			                 <td><?php echo $value1->ifscCode; ?></td>
                                     </tr>
                                      <tr>
                                      <th class="col-md-3">Account No.</th>
-                                     <td></td>
+                                     <td><?php echo $value1->accountNum; ?></td>
                                     </tr>
                                      <tr>
                                      <th class="col-md-3">Google Pay No.</th>
-                                     <td></td>
+                                     <td><?php echo $value1->googlePayNum; ?></td>
                                     </tr>
                                      <tr>
                                      <th class="col-md-2">Phone Pay No.</th>
-                                     <td></td>
+                                     <td><?php echo $value1->phonePayNum; ?></td>
                                     </tr>
 				      			                <tr>
 				      			                 <th class="col-md-2">Status</th>
-				      			                 <td></td>
+				      			                 <td><?php if($value1->status=='1') echo '<b class="text-success">Active</b>'; ?></td>
                                     </tr>
 				      			               
 				      			               </thead>
 			                              <?php 
-                                     //  }
-                                     // } 
+                                      }
+                                     } 
                                     ?>
                                 </table>
                               </div>
@@ -199,6 +208,42 @@ $result = json_decode($response);
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <!-- modal box start-->
+   <div class="modal fade" id="modal-default">
+     <?php 
+         foreach($result as $key => $value){
+         foreach($value as $key1 => $value1)
+          {
+      ?>  
+        <div class="modal-dialog">
+          <form action="action/upload_profile_post.php" method="post" enctype="multipart/form-data">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Upload Profile Photo</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                 <div class="form-group">
+                    <label>Upload Photo*</label>
+                    <input type="file"  class="form-control" name="userPhoto" 
+                     placeholder="Bank Name" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <input type="hidden" name="userId" value="<?php echo $value1->id; ?>">
+              <button type="submit" name="upload" class="btn btn-primary"><i class="fas fa-upload pr-2"></i>Upload</button>
+            </div>
+          </div>
+          </form>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+     <?php } } ?>
+      <!-- modal box end-->
 <?php
 include "include/footer.php";
 ?>

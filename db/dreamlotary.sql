@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 13, 2023 at 05:01 AM
+-- Generation Time: May 13, 2023 at 12:14 PM
 -- Server version: 5.6.20-log
 -- PHP Version: 5.4.31
 
@@ -36,13 +36,14 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `ticket`
 --
 
 INSERT INTO `ticket` (`id`, `ticketAmount`, `lotaryAmount`, `lotaryNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
+(9, '100', '100000', 'DREAM1683962913', 2, '2023-05-13 07:28:33', 'Admin', '0000-00-00 00:00:00', ''),
 (8, '55', '5000', 'DREAM1683794705', 1, '2023-05-11 08:45:05', 'Admin', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `user_account` (
 
 INSERT INTO `user_account` (`id`, `userId`, `accountHolder`, `bankName`, `branchName`, `ifscCode`, `accountNum`, `googlePayNum`, `phonePayNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
 (1, '3', '', '', '', '', '', '', '', 1, '2023-05-11 20:47:38', 'Mrityunjay singh', '0000-00-00 00:00:00', ''),
-(2, '4', '', '', '', '', '', '', '', 1, '2023-05-11 20:55:07', 'Dhananjay singh', '0000-00-00 00:00:00', '');
+(2, '4', 'Dhananjay singh', 'sbi', 'mungra badshahpur', 'ubino222', '12365852600', '3658956200', '2365896500', 1, '2023-05-11 20:55:07', 'Dhananjay singh', '2023-05-12 18:30:00', '4');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user_account`
 --

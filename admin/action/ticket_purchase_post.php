@@ -1,24 +1,23 @@
 <?php
 include '../../constant.php';
 
-if(isset($_POST["registration_no"])){
+if(isset($_POST["submit"])){
 
- $registration_no=strtoupper($_POST["registration_no"]);
  $id=$_POST["id"];
- $status=1;
+ $status='2';
 
- $url=$URL. "registration/reg_update_approve.php";
- $data = array("registration_no"=>$registration_no, "id"=>$id, "status"=>$status);
+ $url=$URL. "ticket/update_ticket_purchased.php";
+ $data = array("id"=>$id, "status"=>$status);
 
  //print_r($data);
  $postdata = json_encode($data);
  $result=url_encode_Decode($url,$postdata);
  //print_r($result);
  if($result->message=="Successfull"){
- header('Location:../pending registration_list.php');
+ header('Location:../ticket_list.php');
  } 
- header('Location:../pending registration_list.php');
- }
+ header('Location:../ticket_list.php');
+  }
 
  function url_encode_Decode($url,$postdata){
  $client = curl_init($url);

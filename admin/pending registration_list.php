@@ -1,7 +1,7 @@
 <?php
 // error_reporting(0);
 include "include/header.php";
-	$url = $URL."registration/read_registration_by_status.php";
+	$url = $URL."user/read_allusers_list.php";
 	$data = array( "status"=>"0");
 
   //print_r($data);
@@ -23,13 +23,13 @@ include "include/header.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pending Registration Details</h1>
+            <!-- <h1>Regiserd Users</h1> -->
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Registration Details</li>
-              <li class="breadcrumb-item active">Pending Registration Details</li>
+              <li class="breadcrumb-item active">Registerd Users</li>
             </ol>
           </div>
         </div>
@@ -56,30 +56,20 @@ include "include/header.php";
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">PENDING REGISTRATION DETAILS</h3> 
+                <h3 class="card-title">REGISTERD USERS DETAILS</h3> 
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped text-center">
                   <thead>
                   <tr>
-                  
-                    <th>Sr_N.</th>
-                    <th>Post Name</th>
-                    <th>Registration No.</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Father Name</th>
-                    <th>Mother Name</th>
+                    <th>Sr No.</th>
+                    <th>User Type</th>
+                    <th>User Name</th>
                     <th>Mobile No.</th>
-                    <th>Email id</th>
-                    <th>Higher Education</th>
-                    <th>Marks Obtained</th>
-                    <th>Grade</th>
+                    <th>Email Id</th>
                     <th>Status</th>
-                    <th>Reg. Date</th>
-                    <th width="100px">Approve</th>
-                    <th>Reject</th>
+                    <th>Create date</th>
                   </tr>
                   	
                   </thead>
@@ -92,44 +82,14 @@ include "include/header.php";
                      
                      $image = $ADMIN_IMG_PATH.$value1->id."/profile/".$value1->id.".png";
                   ?>  
-                  <tr>
+                  <tr>          
                     <td><?php echo ++$counter; ?></td>
-                    <td><?php echo $value1->exam_name; ?></td>
-                    <td><?php echo $value1->registration_no; ?></td>
-                    <td><img class="img-fluid img-thumbnail" alt="Responsive image" height="200" widht="200" src="<?php echo $image; ?>"></td>
-                    
-                    <td><?php echo $value1->full_name; ?></td>
-                    <td><?php echo $value1->father_name; ?></td>
-                    <td><?php echo $value1->mother_name; ?></td>
-                    <td><?php echo $value1->mobile; ?></td>
-                    <td><?php echo $value1->email; ?></td>    
-                    <td><?php echo $value1->h_qualification; ?></td>
-                    
-                    <td><?php echo $value1->h_percentage ?></td>
-                    <td><?php echo $value1->grade ?></td>
-                    <td><?php if($value1->status==0) echo "PENDING"; elseif($value1->status==1) echo "ACTIVE"; elseif($value1->status==2) echo "REJECTED"; ?></td>
-                    <td>
-                      <?php 
-                       $date = date("d-m-Y", strtotime($value1->created_on)); 
-                       echo $date=="01-01-1970" ? '0' : $date; 
-                       ?>
-                    </td>
-                    <td>
-                    <form action="action/approve_user.php" method="post">
-                         <input type="hidden" name="id" value="<?php echo $value1->id ?>" readonly>
-                         <input type="hidden" name="registration_no" value="<?php echo $value1->registration_no ?>" readonly>
-                         <input type="hidden" name="created_on" value="<?php echo $value1->created_on ?>" readonly>
-                         <button type="submit" class="btn btn-block btn-outline-success">APPROVE</button></td>
-                       </form>  
-      
-                    <td>
-                       <form action="action/reject_user.php" method="post">
-                       <input type="hidden" name="id" value="<?php echo $value1->id ?>" readonly>
-                         <input type="hidden" name="registration_no" value="<?php echo $value1->registration_no ?>" readonly>
-                         <input type="hidden" name="created_on" value="<?php echo $value1->created_on ?>" readonly>
-                         <button type="submit" class="btn btn-block btn-outline-danger">REJECT</button>
-                       </form>
-                    </td>
+                    <td><?php echo $value1->userRole; ?></td>
+                    <td><?php echo $value1->userName; ?></td>
+                    <td><?php echo $value1->userMobile; ?></td>
+                    <td><?php echo $value1->userEmail; ?></td>
+                    <td><?php echo $value1->status; ?></td> 
+                    <td><?php echo date('d-m-Y',strtotime($value1->createdOn)); ?></td>   
                   </tr>
                   <?php
                      }

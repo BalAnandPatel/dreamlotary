@@ -60,11 +60,36 @@ class Ticket{
 
     function readTicketDetails(){
         $query="Select 
-        id, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->table_name." where status=1";
+        id, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->table_name;
         $stmt = $this->conn->prepare($query); 
         // $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         return $stmt;
+    }
+
+    public function updateTicketPurchased(){
+              // query to insert record
+       $query = "UPDATE 
+                    " . $this->table_name . "
+                SET
+                            status=:status
+                            WHERE id=:id"; 
+                          
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->status=htmlspecialchars(strip_tags($this->status));
+        
+        //bind values
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":status", $this->status);      
+      
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+      
+        return false; 
     }
 
   function deleteTicket(){
