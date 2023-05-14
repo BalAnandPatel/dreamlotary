@@ -2,10 +2,10 @@
 include "include/header.php";
 // try{
 $url = $URL."user/read_user_profile.php";
-// $user_id=$_SESSION['login_session']->agent_id;
-$userType='2';
-$userEmail='dhananjay@gmail.com';
-$data = array( "userType" =>$userType, "userEmail"=>$userEmail);
+
+$userType=$_SESSION["USER_TYPE"]; 
+$id=$_SESSION["USER_ID"];
+$data = array("userType" =>$userType, "id"=>$id);
 $postdata = json_encode($data);
 $client = curl_init($url);
 curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
@@ -73,7 +73,7 @@ $result = json_decode($response);
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="<?php echo 'image/user_profile/'.$value1->id.'/user_img_'.$value1->id.'.png' ?>"
+                       src="<?php echo $USER_PROFILE_IMGPATH.$value1->id.'/user_img_'.$value1->id.'.png' ?>"
                        alt="User profile picture">
                 </div>
 
@@ -98,7 +98,7 @@ $result = json_decode($response);
 
                 </ul>
                 <form action="user_profile_update.php" method="post">
-                <input type="hidden" name="userEmail" value="<?php echo $value1->userEmail; ?>">
+                <input type="hidden" name="userId" value="<?php echo $value1->id; ?>">
                 <button type="submit" class="btn btn-primary"><b>Update Account Details</b></button>
                </form>
               </div>

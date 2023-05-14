@@ -6,10 +6,10 @@ include '../../common/php-jwt/src/SignatureInvalidException.php';
 include '../../common/php-jwt/src/BeforeValidException.php';
 use \Firebase\JWT\JWT;
 
-$pwd= $_POST["password"]; 
-$userName= $_POST["userName"];
-$url = $URL."admin_login/admin_login.php";
-$data = array("userName" =>$userName, "password" =>$pwd);
+$userPass= $_POST["userPass"]; 
+$userEmail= $_POST["userEmail"];
+$url = $URL."user_login/user_login_read.php";
+$data = array("userEmail" =>$userEmail, "userPass" =>$userPass);
 //print_r($data);
 $postdata = json_encode($data);
 $client = curl_init($url);
@@ -30,19 +30,22 @@ if(!isset($decode->data->message)=="Request Failed"){
   $result = JWT::decode($decode->access_token, $SECRET_KEY, array('HS256'));
   //print_r($result);
   $uid=$result->data->id;
-  $name=$result->data->fullName;
+  $userEmail=$result->data->userEmail;
+  $name=$result->data->userName;
+  $userType=$result->data->userType;
+  $userRole=$result->data->userRole;
 
-  $_SESSION["ID"]=$uid;
-  $_SESSION["USERNAME"]=$userName;
+  $_SESSION["USER_ID"]=$uid;
+  $_SESSION["USER_Email"]=$userEmail;
+  $_SESSION["USER_TYPE"]=$userType;
+  $_SESSION["USER_ROLE"]=$userRole;
   $_SESSION["NAME"]=$name;
   $_SESSION["JWT"]=$result;
   $_SESSION['MEMBBER_FROM']=$result->data->createdOn;
  //print_r($_SESSION['SPONSOR_ID']);
-
   header('Location:../adm_dashboard.php');
  }else{
-
- header('Location:../index.php?msg='.$result->message);
+ header('Location:../index.php?msg='.$result->message); 
  }
 
 // function giplCurl($api,$postdata){

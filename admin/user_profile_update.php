@@ -4,8 +4,8 @@ include "include/header.php";
 $url = $URL."user/read_user_profile.php";
 // $user_id=$_SESSION['login_session']->agent_id;
 $userType='2';
-$userEmail=$_POST["userEmail"];
-$data = array( "userType" =>$userType, "userEmail"=>$userEmail);
+$id=$_POST["userId"];
+$data = array( "userType" =>$userType, "id"=>$id);
 $postdata = json_encode($data);
 $client = curl_init($url);
 curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
@@ -22,6 +22,8 @@ $response = curl_exec($client);
 //print_r($response);
 $result = json_decode($response);
 //print_r($result);
+$userid=$result->records[0]->id;
+$user_img=$USER_PROFILE_IMGPATH.$userid."/user_img_".$userid.".png";
 // if(isset($result->message))
 // if ($result->message == "Access denied." && $result->error == "Expired token") {
 //   unset($_SESSION['login_session']);
@@ -53,7 +55,7 @@ $result = json_decode($response);
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="image/logo/user_icon.png"
+                       src="<?php echo $user_img; ?>"
                        alt="User profile picture">
                 </div>
 

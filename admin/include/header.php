@@ -55,16 +55,20 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="adm_dashboard.php" class="nav-link">HOME</a>
+        <a href="adm_dashboard.php" class="nav-link"><i class="fa fa-home mr-1"></i>HOME</a>
       </li>
-	  <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">PROFILE</a>
+      <?php
+               if (strpos($ROLE, $USER_PROFILE) !== false) {
+              ?>
+	    <li class="nav-item d-none d-sm-inline-block">
+        <a href="user_profile.php" class="nav-link"><i class="fa fa-user-circle mr-1"></i>PROFILE</a>
       </li>
+      <?php } ?>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-changepass"><i class="fa fa-key mr-1"></i>CHANGE PASSWORD</a>
       </li>
 	  <li class="nav-item d-none d-sm-inline-block">
-        <a href="logout.php" class="nav-link">LOGOUT</a>
+        <a href="logout.php" class="nav-link"><i class="fa fa-lock mr-1"></i>LOGOUT</a>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -111,23 +115,6 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                 <a href="#" class="nav-link">
-                 <i class="nav-icon fas fa-user"></i>
-                 <p>
-                   Registration Details
-                   <i class="right fas fa-angle-left"></i>
-                 </p>
-                 </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pending registration_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Registerd Users</p>
-                </a>
-              </li>
-            </ul>
-          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -138,19 +125,26 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+            <?php
+               if (strpos($ROLE, $TICKET_ENTRY) !== false) {
+            ?>
               <li class="nav-item">
                 <a href="ticket_entry.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Generate Ticket</p>
                 </a>
               </li>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $TICKET_LIST) !== false) {
+              ?>
               <li class="nav-item">
                 <a href="ticket_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Ticket List</p>
                 </a>
               </li>
+              <?php } ?>
               <!-- <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -164,24 +158,31 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-circle"></i>
               <p>
-                User Profile
+                User's Detaill
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+            <?php
+               if (strpos($ROLE, $USER_PROFILE) !== false) {
+              ?>
               <li class="nav-item">
                 <a href="user_profile.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Update Profile</p>
                 </a>
               </li>
-             <!--  <li class="nav-item">
-                <a href="notification_list.php" class="nav-link">
+              <?php } ?>
+              <?php
+                        if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
+                        ?>
+              <li class="nav-item">
+                <a href="user_registration_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Notification List</p>
+                  <p>Registerd Users</p>
                 </a>
-              </li> -->
+              </li>
+              <?php } ?>
               <!-- <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -229,3 +230,33 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+<!-- modal box start-->
+<div class="modal fade" id="modal-changepass">
+        <div class="modal-dialog">
+          <form action="action/change_userpass_post.php" method="post" enctype="multipart/form-data">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Change Password</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                 <div class="form-group">
+                    <label>Password*</label>
+                    <input type="password"  class="form-control" name="userPass" 
+                     placeholder="Enter New Password" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <input type="hidden" name="userId" value="">
+              <button type="submit" name="submit" class="btn btn-primary"></i>Submit</button>
+            </div>
+          </div>
+          </form>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- modal box end-->

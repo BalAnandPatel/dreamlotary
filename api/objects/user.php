@@ -23,10 +23,10 @@
 
     public function readUserProfile(){
      $query="Select user.id, userType, userRole, userName, userMobile, userEmail, user.status, user.createdOn, user.createdBy, accountHolder, bankName, branchName, ifscCode, accountNum, googlePayNum, phonePayNum
-        from " .$this->table_name. " as user LEFT JOIN " .$this->user_account ." as ua ON user.id=ua.userId where user.status=1 and user.userType=:userType and userEmail=:userEmail";
+        from " .$this->table_name. " as user LEFT JOIN " .$this->user_account ." as ua ON user.id=ua.userId where user.status=1 and user.userType=:userType and user.id=:id";
         $stmt = $this->conn->prepare($query); 
         $stmt->bindParam(":userType", $this->userType);
-        $stmt->bindParam(":userEmail", $this->userEmail);
+        $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         return $stmt;
     }

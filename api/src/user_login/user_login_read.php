@@ -6,7 +6,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 require '../../../constant.php';
 include_once '../../config/database.php';
-include_once '../../objects/admin_login.php';
+include_once '../../objects/user_login.php';
 require '../../../common/php-jwt/src/JWT.php';
 require '../../../common/php-jwt/src/ExpiredException.php';
 require '../../../common/php-jwt/src/SignatureInvalidException.php';
@@ -20,16 +20,16 @@ use \Firebase\JWT\JWT;
 $database = new Database();
 $db = $database->getConnection();
 
-$login = new Admin($db);
+$login = new Userlogin($db);
 
 $data = json_decode(file_get_contents("php://input"));
 //print_r($data);
 
-$login->userName = $data->userName;
-$login->password = $data->password;
+$login->userEmail = $data->userEmail;
+$login->userPass = $data->userPass;
 //$login->updated_on=date('Y-m-d H:i:s');
 
-$stmt = $login->adm_login();
+$stmt = $login->userLoginVerify();
 $num = $stmt->rowCount();
 if($num>0){       
         
@@ -45,8 +45,10 @@ if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             "data" => array(
                 "message" => $LOGIN_SUCCESS_MSG,
                 "userName" => $userName,
-                "fullName" =>$fullName,
-                "password" =>$password,
+                "userType" => $userType,
+                "userRole" => $userRole,
+                "userEmail" =>$userEmail,
+                "userPass" =>$userPass,
                 "id"=>$id,
                 "createdOn"=>$createdOn
                 
