@@ -58,12 +58,12 @@
         <a href="adm_dashboard.php" class="nav-link"><i class="fa fa-home mr-1"></i>HOME</a>
       </li>
       <?php
-               if (strpos($ROLE, $USER_PROFILE) !== false) {
+               // if (strpos($ROLE, $USER_PROFILE) !== false) {
               ?>
 	    <li class="nav-item d-none d-sm-inline-block">
         <a href="user_profile.php" class="nav-link"><i class="fa fa-user-circle mr-1"></i>PROFILE</a>
       </li>
-      <?php } ?>
+      <?php //} ?>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-changepass"><i class="fa fa-key mr-1"></i>CHANGE PASSWORD</a>
       </li>
@@ -126,7 +126,7 @@
             </a>
             <ul class="nav nav-treeview">
             <?php
-               if (strpos($ROLE, $TICKET_ENTRY) !== false) {
+              // if (strpos($ROLE, $TICKET_ENTRY) !== false) {
             ?>
               <li class="nav-item">
                 <a href="ticket_entry.php" class="nav-link">
@@ -134,9 +134,9 @@
                   <p>Generate Ticket</p>
                 </a>
               </li>
-              <?php } ?>
+              <?php //} ?>
               <?php
-               if (strpos($ROLE, $TICKET_LIST) !== false) {
+               //if (strpos($ROLE, $TICKET_LIST) !== false) {
               ?>
               <li class="nav-item">
                 <a href="ticket_list.php" class="nav-link">
@@ -144,7 +144,7 @@
                   <p>Ticket List</p>
                 </a>
               </li>
-              <?php } ?>
+              <?php //} ?>
               <!-- <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -164,7 +164,7 @@
             </a>
             <ul class="nav nav-treeview">
             <?php
-               if (strpos($ROLE, $USER_PROFILE) !== false) {
+              // if (strpos($ROLE, $USER_PROFILE) !== false) {
               ?>
               <li class="nav-item">
                 <a href="user_profile.php" class="nav-link">
@@ -172,9 +172,9 @@
                   <p>Update Profile</p>
                 </a>
               </li>
-              <?php } ?>
+              <?php //} ?>
               <?php
-                        if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
+                      //  if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
                         ?>
               <li class="nav-item">
                 <a href="user_registration_list.php" class="nav-link">
@@ -182,7 +182,7 @@
                   <p>Registerd Users</p>
                 </a>
               </li>
-              <?php } ?>
+              <?php //} ?>
               <!-- <li class="nav-item">
                 <a href="exam_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
