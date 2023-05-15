@@ -4,6 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 require '../../../constant.php';
 include_once '../../config/database.php';
 include_once '../../objects/user_login.php';
@@ -20,14 +21,13 @@ use \Firebase\JWT\JWT;
 $database = new Database();
 $db = $database->getConnection();
 
-$login = new Userlogin($db);
+$login = new Login($db);
 
 $data = json_decode(file_get_contents("php://input"));
 //print_r($data);
 
 $login->userEmail = $data->userEmail;
 $login->userPass = $data->userPass;
-//$login->updated_on=date('Y-m-d H:i:s');
 
 $stmt = $login->userLoginVerify();
 $num = $stmt->rowCount();
@@ -51,8 +51,7 @@ if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 "userPass" =>$userPass,
                 "id"=>$id,
                 "createdOn"=>$createdOn
-                
-               
+   
         ));
 	//var_dump($token);
    $jwt = JWT::encode($token, $SECRET_KEY);     

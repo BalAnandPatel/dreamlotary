@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 13, 2023 at 12:14 PM
+-- Generation Time: May 15, 2023 at 12:25 PM
 -- Server version: 5.6.20-log
 -- PHP Version: 5.4.31
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `ticket`
@@ -44,7 +44,31 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 
 INSERT INTO `ticket` (`id`, `ticketAmount`, `lotaryAmount`, `lotaryNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
 (9, '100', '100000', 'DREAM1683962913', 2, '2023-05-13 07:28:33', 'Admin', '0000-00-00 00:00:00', ''),
-(8, '55', '5000', 'DREAM1683794705', 1, '2023-05-11 08:45:05', 'Admin', '0000-00-00 00:00:00', '');
+(8, '55', '5000', 'DREAM1683794705', 1, '2023-05-11 08:45:05', 'Admin', '0000-00-00 00:00:00', ''),
+(10, '100', '1000', 'DREAM1684143039', 1, '2023-05-15 09:30:39', 'Admin', '0000-00-00 00:00:00', ''),
+(11, '300', '3000', 'DREAM1684143665', 1, '2023-05-15 09:41:05', 'Admin', '0000-00-00 00:00:00', ''),
+(12, '200', '5000', 'DREAM1684143893', 1, '2023-05-15 09:44:53', 'Admin', '0000-00-00 00:00:00', ''),
+(13, '100', '100000', 'DREAM1683962913', 1, '2023-05-15 00:21:00', '', '0000-00-00 00:00:00', ''),
+(14, '100', '100000', 'DREAM1683962913', 1, '2023-05-15 00:22:00', '9', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ticket_purchase`
+--
+
+CREATE TABLE IF NOT EXISTS `ticket_purchase` (
+`id` int(255) NOT NULL,
+  `userId` varchar(255) NOT NULL,
+  `ticketAmount` varchar(255) NOT NULL,
+  `lotaryAmount` varchar(255) NOT NULL,
+  `lotaryNum` varchar(50) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `createdOn` timestamp NOT NULL,
+  `createdBy` varchar(255) NOT NULL,
+  `updatedOn` timestamp NOT NULL,
+  `updatedBy` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -103,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
 --
 
 INSERT INTO `user_login` (`id`, `userType`, `userRole`, `userName`, `userMobile`, `userEmail`, `userPass`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
-(4, 2, 'User', 'Dhananjay singh', '25232522', 'dhananjay@gmail.com', '12345', 1, '2023-05-11 20:55:07', 'Dhananjay singh', '0000-00-00 00:00:00', ''),
+(4, 1, 'Admin', 'Admin', '25232522', 'admin@gmail.com', '12345', 1, '2023-05-11 20:55:07', 'Admin', '0000-00-00 00:00:00', ''),
 (3, 2, 'User', 'Mrityunjay singh', '12233', 'ms@gmail.com', '12345', 1, '2023-05-11 20:11:03', 'Mrityunjay singh', '0000-00-00 00:00:00', '');
 
 --
@@ -114,6 +138,12 @@ INSERT INTO `user_login` (`id`, `userType`, `userRole`, `userName`, `userMobile`
 -- Indexes for table `ticket`
 --
 ALTER TABLE `ticket`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ticket_purchase`
+--
+ALTER TABLE `ticket_purchase`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -136,7 +166,12 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `ticket_purchase`
+--
+ALTER TABLE `ticket_purchase`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_account`
 --

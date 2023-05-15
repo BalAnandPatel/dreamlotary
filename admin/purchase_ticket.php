@@ -63,7 +63,7 @@ $result = json_decode($response);
                     <th>Ticket Amount</th>
                     <th>Lotary Amount</th>
                     <th>Lotary Number</th>
-                    <th>Status</th>
+                    <th>Actions</th>
                 
                   </tr>
                   </thead>
@@ -84,11 +84,17 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotaryAmount; ?></td>
                     <td><?php echo $value1->lotaryNum; ?></td>
                     <td class="col-md-1">
+                      <form action="action/ticket_purchase_post.php" method="post">
+                      <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
+                      <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
+                      <input type="hidden" name="lotaryAmount" value="<?php echo $value1->lotaryAmount; ?>">
+                      <input type="hidden" name="lotaryNum" value="<?php echo $value1->lotaryNum; ?>">
                       <?php if($value1->status=='1'){?>
-                      <button type="button" name="submit" class="btn btn-light btn-sm">Not Purchased</button>
+                      <button type="submit" name="submit" class="btn btn-success">Purchase</button>
                       <?php }else if($value1->status=='2'){?>
                       <button type="button" class="btn btn-success" disabled>Purchased</button>
                       <?php } ?>
+                     </form>
                     </td>
                   </tr>
              

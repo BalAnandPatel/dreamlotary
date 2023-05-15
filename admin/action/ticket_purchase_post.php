@@ -5,19 +5,36 @@ if(isset($_POST["submit"])){
 
  $id=$_POST["id"];
  $status='2';
-
+ $ticketAmount=$_POST["ticketAmount"];
+ $lotaryAmount=$_POST["lotaryAmount"];
+ $lotaryNum=$_POST["lotaryNum"];
+ $createdOn=date("Y-m-d h:i:S");
+ $createdBy= $id=$_POST["id"];
+ 
  $url=$URL. "ticket/update_ticket_purchased.php";
+ $url_ticketHistory=$URL. "ticket/create_ticket_purchased_history.php";
+
  $data = array("id"=>$id, "status"=>$status);
 
  //print_r($data);
  $postdata = json_encode($data);
  $result=url_encode_Decode($url,$postdata);
- //print_r($result);
- if($result->message=="Successfull"){
- header('Location:../ticket_list.php');
- } 
- header('Location:../ticket_list.php');
-  }
+ print_r($result);
+
+// create ticket purchase history
+
+ $history_data = array("userId"=>$id, "ticketAmount"=>$ticketAmount, "lotaryAmount"=>$lotaryAmount, "lotaryNum"=>$lotaryNum, "status"=>$status, "createdOn"=>$createdOn, "createdBy"=>$createdBy);
+
+ //print_r($data);
+ $history_postdata = json_encode($history_data);
+ $history_result=url_encode_Decode($url_ticketHistory,$history_postdata);
+ print_r($history_result);
+
+ // if($result->message=="Successfull"){
+ // header('Location:../ticket_list.php');
+ // } 
+ // header('Location:../ticket_list.php');
+   }
 
  function url_encode_Decode($url,$postdata){
  $client = curl_init($url);

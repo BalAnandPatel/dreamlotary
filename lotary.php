@@ -1,5 +1,18 @@
-<?php include "include/header.php"; ?>
+<?php
+include "include/header.php";
 
+$url = $URL."ticket/read_ticket.php";
+$data = array();
+//print_r($data);
+$postdata = json_encode($data);
+$client = curl_init($url);
+curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
+$response = curl_exec($client);
+//print_r($response);
+$result = json_decode($response);
+//print_r($result);
+?>
 <br><br><br>
 
 
@@ -11,188 +24,64 @@
 <style>
   .col{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90px;
-    font-size: 30px;
+    /*justify-content: center;
+    align-items: center;*/
+    height:auto;
+    font-size:15px;
     font-weight: bold;
+    cursor:pointer;
   }
+
+  .col ul{
+   margin:0;
+   padding:5px 0px;
+  list-style:none;
+  }
+  
+  .col li{
+  display:flex;
+  align-items: center;
+  padding:1px 0px; 
+  }
+
+  .col li span{
+   margin:0px 5px; 
+  }
+
+  .col:nth-child(even){
+    background-color:black;
+    color:#fff !important;
+  }
+
+
 </style>
 <div class="container text-center">
   <div class="row">
-    <div class="col border border-dark bg-dark text-white rounded">
-      1
+      <?php 
+         $counter=0;  
+         foreach($result as $key => $value){
+         foreach($value as $key1 => $value1)
+      {
+      ?>
+    <div class="col col-md-12 col-lg-4 col-sm-12 border border-dark text-dark" onclick="goLogin()">
+      <ul>
+        <li>Lotary No. :<span><?php echo $value1->lotaryNum; ?></span><li>
+        <li>Ticket Amount :<span><?php echo $value1->ticketAmount; ?></span><li>
+        <li>Lotary Amount :<span><?php echo $value1->lotaryAmount; ?></span><li> 
+      </ul>
+    </a>
     </div>
-    <div class="col border border-dark rounded">
-      2
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      3
-    </div>
-    <div class="col border border-dark rounded">
-      4
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      5
-    </div>
-    <div class="col border border-dark rounded">
-      6
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      7
-    </div>
-    <div class="col border border-dark rounded">
-      8
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      9
-    </div>
-    <div class="col border border-dark rounded">
-      10
-    </div>
-  </div>
-
-  <br>
-
-  <div class="row">
-    <div class="col border border-dark bg-dark text-white rounded">
-      11
-    </div>
-    <div class="col border border-dark rounded">
-      12
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      13
-    </div>
-    <div class="col border border-dark rounded">
-      14
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      15
-    </div>
-    <div class="col border border-dark rounded">
-      16
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      17
-    </div>
-    <div class="col border border-dark rounded">
-      18
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      19
-    </div>
-    <div class="col border border-dark rounded">
-      20
-    </div>
-  </div>
-
-  <br>
-
-  <div class="row">
-    <div class="col border border-dark bg-dark text-white rounded">
-      21
-    </div>
-    <div class="col border border-dark rounded">
-      22
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      23
-    </div>
-    <div class="col border border-dark rounded">
-      24
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      25
-    </div>
-    <div class="col border border-dark rounded">
-      26
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      27
-    </div>
-    <div class="col border border-dark rounded">
-      28
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      29
-    </div>
-    <div class="col border border-dark rounded">
-      30
-    </div>
-  </div>
+   <?php } } ?>
   
-  <br>
-  
-  <div class="row">
-    <div class="col border border-dark bg-dark text-white rounded">
-      31
-    </div>
-    <div class="col border border-dark rounded">
-      32
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      33
-    </div>
-    <div class="col border border-dark rounded">
-      34
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      35
-    </div>
-    <div class="col border border-dark rounded">
-      36
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      37
-    </div>
-    <div class="col border border-dark rounded">
-      38
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      39
-    </div>
-    <div class="col border border-dark rounded">
-      40
-    </div>
-  </div>
-  
-  <br>
-  
-  <div class="row">
-    <div class="col border border-dark bg-dark text-white rounded">
-      41
-    </div>
-    <div class="col border border-dark rounded">
-      42
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      43
-    </div>
-    <div class="col border border-dark rounded">
-      44
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      45
-    </div>
-    <div class="col border border-dark rounded">
-      46
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      47
-    </div>
-    <div class="col border border-dark rounded">
-      48
-    </div>
-    <div class="col border border-dark bg-dark text-white rounded">
-      49
-    </div>
-    <div class="col border border-dark rounded">
-      50
-    </div>
-  </div>
+
 </div>
+<script>
+ 
+  function goLogin(){
+   window.location="admin/index.php";
+  }
 
+</script>
 
 <section class="offer_section hero_next_section-margin layout_padding">
     <div class="container">

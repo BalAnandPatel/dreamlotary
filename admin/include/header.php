@@ -120,7 +120,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-address-card"></i>
               <p>
-                Ticket Entry
+                Lotary Ticket
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -131,7 +131,7 @@
               <li class="nav-item">
                 <a href="ticket_entry.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Generate Ticket</p>
+                  <p>Ticket Entry</p>
                 </a>
               </li>
               <?php //} ?>
@@ -139,18 +139,18 @@
                //if (strpos($ROLE, $TICKET_LIST) !== false) {
               ?>
               <li class="nav-item">
+                <a href="purchase_ticket.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Purchase Ticket</p>
+                </a>
+              </li>
+              <?php //} ?>
+               <li class="nav-item">
                 <a href="ticket_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Ticket List</p>
                 </a>
-              </li>
-              <?php //} ?>
-              <!-- <li class="nav-item">
-                <a href="exam_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Rejected Donation</p>
-                </a>
-              </li> -->
+              </li> 
             </ul>
           </li>
           

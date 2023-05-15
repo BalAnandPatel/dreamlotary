@@ -51,6 +51,53 @@ class Ticket{
         return false;
           
     }
+
+
+        function createTicketHistory(){
+  
+        // query to insert record
+    $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                         userId=:userId,
+                         ticketAmount=:ticketAmount,
+                         lotaryAmount=:lotaryAmount,
+                         lotaryNum=:lotaryNum,
+                         status=:status, 
+                         createdOn=:createdOn,
+                         createdBy=:createdBy
+                    "; 
+                          
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+        $this->userId=htmlspecialchars(strip_tags($this->userId));
+        $this->ticketAmount=htmlspecialchars(strip_tags($this->ticketAmount));
+        $this->lotaryAmount=htmlspecialchars(strip_tags($this->lotaryAmount));
+        $this->lotaryNum=htmlspecialchars(strip_tags($this->lotaryNum));
+        $this->status=htmlspecialchars(strip_tags($this->status));
+        $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
+        $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
+        
+        //bind values
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":ticketAmount", $this->ticketAmount);
+        $stmt->bindParam(":lotaryAmount", $this->lotaryAmount);
+        $stmt->bindParam(":lotaryNum", $this->lotaryNum);
+        $stmt->bindParam(":status", $this->status);
+        $stmt->bindParam(":createdOn", $this->createdOn);
+        $stmt->bindParam(":createdBy", $this->createdBy);
+    
+       
+      
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+      
+        return false;
+          
+    }
+
     function read_notice_maxId(){
         $query="Select max(id) as id from " . $this->table_name ."";
         $stmt = $this->conn->prepare($query); 

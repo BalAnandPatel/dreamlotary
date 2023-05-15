@@ -25,7 +25,7 @@
 
       <form action="action/user_login_post.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="userEmail" class="form-control" placeholder="Email" autocomplete="off" required>
+          <input type="email" name="userEmail" class="form-control" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

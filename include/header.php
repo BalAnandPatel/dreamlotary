@@ -1,3 +1,4 @@
+<?php include "constant.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
