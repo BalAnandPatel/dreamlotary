@@ -1,4 +1,4 @@
-
+<?php include "../constant.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,30 +19,31 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Dream</b>Lotary</a>
+      <a href="user_registration.php" class="h1"><b>Dream</b>Lotary</a>
     </div>
     <div class="card-body">
+      <?php 
+        if(isset($_SESSION['user_reg_success'])){
+        echo '<div class="alert alert-success text-center">'.$_SESSION['user_reg_success'].'</div>';
+        unset($_SESSION['user_reg_success']);
+      }else if(isset($_SESSION['user_reg_error'])){
+        echo '<div class="alert alert-danger text-center">'.$_SESSION['user_reg_error'].'</div>';
+          unset($_SESSION['user_reg_error']);
+      } 
+      ?>
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+      <form action="action/user_registration_post.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          <input type="text" class="form-control" name="userName" placeholder="Full name" autocomplete="off"  required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+         <div class="input-group mb-3">
+          <input type="number" class="form-control" name="userMobile" placeholder="Mobile No" autocomplete="off" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -50,7 +51,15 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password">
+          <input type="email" class="form-control" name="userEmail" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="userPass" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,7 +69,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree" required>
               <label for="agreeTerms">
                I agree to the <a href="#">terms</a>
               </label>
@@ -68,7 +77,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
         </div>

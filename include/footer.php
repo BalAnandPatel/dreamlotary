@@ -13,6 +13,11 @@
       <a href="#"></a>
     </p>
   </section>
+  <script>
+  function goLogin(){
+   window.location="user/index.php";
+  }
+  </script>
 </body>
 
 </html>

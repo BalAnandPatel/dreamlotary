@@ -58,7 +58,7 @@ if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
    
         echo json_encode(
             array(
-                "access_token" => $jwt
+                "access_token"=>$jwt
             ));
         }
         http_response_code(200);

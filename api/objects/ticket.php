@@ -5,7 +5,7 @@ class Ticket{
     private $table_name = "ticket";
     private $ticket_purchase = "ticket_purchase";
 
-    public $id, $userId, $ticketAmount, $status, $lotaryNum, $lotaryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
+    public $id, $userId, $ticketAmount, $status, $lotteryNum, $lotteryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
 
     public function __construct($db){
         $this->conn = $db;
@@ -18,8 +18,8 @@ class Ticket{
                     " . $this->table_name . "
                 SET
                          ticketAmount=:ticketAmount,
-                         lotaryAmount=:lotaryAmount,
-                         lotaryNum=:lotaryNum,
+                         lotteryAmount=:lotteryAmount,
+                         lotteryNum=:lotteryNum,
                          status=:status, 
                          createdOn=:createdOn,
                          createdBy=:createdBy
@@ -28,16 +28,16 @@ class Ticket{
         // prepare query
         $stmt = $this->conn->prepare($query);
         $this->ticketAmount=htmlspecialchars(strip_tags($this->ticketAmount));
-        $this->lotaryAmount=htmlspecialchars(strip_tags($this->lotaryAmount));
-        $this->lotaryNum=htmlspecialchars(strip_tags($this->lotaryNum));
+        $this->lotteryAmount=htmlspecialchars(strip_tags($this->lotteryAmount));
+        $this->lotteryNum=htmlspecialchars(strip_tags($this->lotteryNum));
         $this->status=htmlspecialchars(strip_tags($this->status));
         $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
         $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
         
         //bind values
         $stmt->bindParam(":ticketAmount", $this->ticketAmount);
-        $stmt->bindParam(":lotaryAmount", $this->lotaryAmount);
-        $stmt->bindParam(":lotaryNum", $this->lotaryNum);
+        $stmt->bindParam(":lotteryAmount", $this->lotteryAmount);
+        $stmt->bindParam(":lotteryNum", $this->lotteryNum);
         $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":createdOn", $this->createdOn);
         $stmt->bindParam(":createdBy", $this->createdBy);
@@ -62,8 +62,8 @@ class Ticket{
                 SET
                          userId=:userId,
                          ticketAmount=:ticketAmount,
-                         lotaryAmount=:lotaryAmount,
-                         lotaryNum=:lotaryNum,
+                         lotteryAmount=:lotteryAmount,
+                         lotteryNum=:lotteryNum,
                          status=:status, 
                          createdOn=:createdOn,
                          createdBy=:createdBy
@@ -73,8 +73,8 @@ class Ticket{
         $stmt = $this->conn->prepare($query);
         $this->userId=htmlspecialchars(strip_tags($this->userId));
         $this->ticketAmount=htmlspecialchars(strip_tags($this->ticketAmount));
-        $this->lotaryAmount=htmlspecialchars(strip_tags($this->lotaryAmount));
-        $this->lotaryNum=htmlspecialchars(strip_tags($this->lotaryNum));
+        $this->lotteryAmount=htmlspecialchars(strip_tags($this->lotteryAmount));
+        $this->lotteryNum=htmlspecialchars(strip_tags($this->lotteryNum));
         $this->status=htmlspecialchars(strip_tags($this->status));
         $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
         $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
@@ -82,8 +82,8 @@ class Ticket{
         //bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":ticketAmount", $this->ticketAmount);
-        $stmt->bindParam(":lotaryAmount", $this->lotaryAmount);
-        $stmt->bindParam(":lotaryNum", $this->lotaryNum);
+        $stmt->bindParam(":lotteryAmount", $this->lotteryAmount);
+        $stmt->bindParam(":lotteryNum", $this->lotteryNum);
         $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":createdOn", $this->createdOn);
         $stmt->bindParam(":createdBy", $this->createdBy);
@@ -108,7 +108,7 @@ class Ticket{
 
     function readTicketDetails(){
         $query="Select 
-        id, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->table_name;
+        id, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->table_name;
         $stmt = $this->conn->prepare($query); 
         // $stmt->bindParam(":id", $this->id);
         $stmt->execute();
@@ -118,13 +118,13 @@ class Ticket{
     function readTicketDetailsByStatus(){
         if($this->userType==1){
             $query="Select 
-            id, userId, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            id, userId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
 
         }else{
             $query="Select 
-            id, userId, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+            id, userId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
             $stmt->bindParam(":userId", $this->userId);

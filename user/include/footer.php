@@ -1,5 +1,5 @@
  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">www.glintelindia.com</a>.</strong>
+    <strong>Copyright &copy; 2014-2021 <a href="https://glintel.com/" target="_blank">www.glintel.com</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
@@ -43,10 +43,58 @@
 <script src="../common/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../common/dist/js/adminlte.js"></script>
-<script>
-   $("#success-alert").fadeTo(2000, 2500).slideUp(2500, function(){
-    $("#success-alert").slideUp(2500);
+<!-- DataTables  & Plugins -->
+<script src="../common/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../common/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../common/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../common/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../common/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../common/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../common/plugins/jszip/jszip.min.js"></script>
+<script src="../common/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../common/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../common/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../common/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../common/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+ 
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+        $(this).remove(); 
+    });
+}, 5000);
+ 
 });
+</script>
+<!-- <script>
+  $(document).ready(function() {
+  $("#success-alert").hide();
+  $("#myWish").click(function showAlert() {
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+      $("#success-alert").slideUp(500);
+    });
+  });
+});
+</script> -->
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 </body>
 </html>

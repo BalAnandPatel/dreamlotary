@@ -44,6 +44,13 @@ if($num>0){
             "userName"=>$userName,
             "userMobile"=>$userMobile,
             "userEmail"=>$userEmail,
+            "accountHolder"=>$accountHolder,
+            "bankName"=>$bankName,
+            "branchName"=>$branchName,
+            "ifscCode"=>$ifscCode,
+            "accountNum"=>$accountNum,
+            "googlePayNum"=>$googlePayNum,
+            "phonePayNum"=>$phonePayNum,
             "status"=>$status,
             "createdOn"=>$createdOn,
             "createdBy"=>$createdBy 

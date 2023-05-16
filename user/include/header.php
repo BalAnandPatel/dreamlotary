@@ -1,35 +1,17 @@
-<?php
-include '../constant.php';
-
-if($_SESSION["ID"]!=""){
- 
-$uid=$_SESSION["ID"];
-$name=$_SESSION["NAME"];
-
-$img="img/".$uid."/profile"."/".$uid.".png";
-
-	$url = $URL."registration/read_profile_by_id.php";
-	$data = array( "id" => $uid);
-	$postdata = json_encode($data);
-	$client = curl_init($url);
-	curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
-	//curl_setopt($client, CURLOPT_POST, 5);
-	curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
-	$response = curl_exec($client);
- // print_r($response);
-  $result = json_decode($response);
- // print_r($result);
-
- 
-
-
-?>
+ <?php 
+ include "../constant.php";
+ date_default_timezone_set('Asia/Kolkata');
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SP News</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Dream Lottery</title>
+  <!-- jsGrid -->
+  <link rel="stylesheet" href="../common/plugins/jsgrid/jsgrid.min.css">
+  <link rel="stylesheet" href="../common/plugins/jsgrid/jsgrid-theme.min.css">
   <!---link to style sheet----->
   <link rel="stylesheet" href="../common/css/style.css">
   <!-- Google Font: Source Sans Pro -->
@@ -52,13 +34,17 @@ $img="img/".$uid."/profile"."/".$uid.".png";
   <link rel="stylesheet" href="../common/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../common/plugins/summernote/summernote-bs4.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../common/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../common/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../common/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../common/assets/img/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="image/logo/adminlogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -68,14 +54,21 @@ $img="img/".$uid."/profile"."/".$uid.".png";
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-       <li class="nav-item d-none d-sm-inline-block">
-        <a href="profile.php" class="nav-link">PROFILE</a>
-      </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="change_password.php" class="nav-link">Change Password</a>
+        <a href="adm_dashboard.php" class="nav-link"><i class="fa fa-home mr-1"></i>HOME</a>
+      </li>
+      <?php
+               // if (strpos($ROLE, $USER_PROFILE) !== false) {
+              ?>
+	    <li class="nav-item d-none d-sm-inline-block">
+        <a href="user_profile.php" class="nav-link"><i class="fa fa-user-circle mr-1"></i>PROFILE</a>
+      </li>
+      <?php //} ?>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-changepass"><i class="fa fa-key mr-1"></i>CHANGE PASSWORD</a>
       </li>
 	  <li class="nav-item d-none d-sm-inline-block">
-        <a href="logout.php" class="nav-link">LOGOUT</a>
+        <a href="logout.php" class="nav-link"><i class="fa fa-lock mr-1"></i>LOGOUT</a>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -109,181 +102,167 @@ $img="img/".$uid."/profile"."/".$uid.".png";
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="dashboard.php" class="brand-link">
-      <img src="../common/assets/img/logo/logo.png" alt="AdminLTE Logo"
-       class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Registration Details</span>
+    <a href="#" class="brand-link">
+      <img src="image/logo/adminlogo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Admin Control</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img  src="<?php echo  $img ?>" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="profile.php" class="d-block" ><?php  echo ucfirst($full_name) ?>-<b>{<?php echo $uid ?>}</b></a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
-                 <a href="#" class="nav-link">
-                 <i class="nav-icon fas fa-user"></i>
-                 <p>
-                   Profile Detail
-                   <i class="right fas fa-angle-left"></i>
-                 </p>
-                 </a>
-              <ul class="nav nav-treeview">
-              <li class="nav-item">
-              <a href="profile_upload.php" class="nav-link">
-              <i class="nav-icon fas fa-camera"></i>
-			</i>
-            <p>Upload Photo</p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-              <a href="edit_profile.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>Update Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
-            <a href="payment_slip_upload.php" class="nav-link">
-              <i class="nav-icon fa fa-university"></i>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-address-card"></i>
               <p>
-               
-            Update Joining Amount</p>
+                Lottery Ticket
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
-          </li>
-          
+            <ul class="nav nav-treeview">
+            <?php
+              // if (strpos($ROLE, $TICKET_ENTRY) !== false) {
+            ?>
               <li class="nav-item">
-              <a href="bank_detail.php" class="nav-link">
-              <i class="nav-icon fa fa-university"></i>
-             <p>Update Account Detail</p>
+                <a href="ticket_entry.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Ticket Entry</p>
                 </a>
               </li>
+              <?php //} ?>
+              <?php
+               //if (strpos($ROLE, $TICKET_LIST) !== false) {
+              ?>
+              <li class="nav-item">
+                <a href="purchase_ticket.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Purchase Ticket</p>
+                </a>
+              </li>
+              <?php //} ?>
+               <li class="nav-item">
+                <a href="ticket_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Ticket List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="purchased_ticket_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Purchased Ticket List</p>
+                </a>
+              </li> 
             </ul>
           </li>
-
+          
           <li class="nav-item">
-                 <a href="#" class="nav-link">
-                 <i class="nav-icon fas fa-user"></i>
-                 <p>
-                   Donation/Offline Fund
-                   <i class="right fas fa-angle-left"></i>
-                 </p>
-                 </a>
-              <ul class="nav nav-treeview">
-              
-          <li class="nav-item">
-            <a href="donation_cum_offline.php" class="nav-link">
-              <i class="nav-icon fa fa-university"></i>
-              <p>Donation/Offline Ads</p>
-            </a>
-          </li>
-
-
-          <li class="nav-item">
-            <a href="donation_detail.php" class="nav-link">
-              <i class="nav-icon fa fa-university"></i>
-              <p>Donation List</p>
-            </a>
-          </li>
-          </ul>
-          </li>
-
-          <li class="nav-item">
-                 <a href="#" class="nav-link">
-                 <i class="nav-icon fas fa-user"></i>
-                 <p>
-                   Video
-                   <i class="right fas fa-angle-left"></i>
-                 </p>
-                 </a>
-              <ul class="nav nav-treeview">
-              
-          <li class="nav-item">
-          <a href="video_view.php" class="nav-link">
-              <i class="nav-icon fa fa-video"></i>
-                 <p>New Video</p>
-            </a>
-          </li>
-
-
-          <li class="nav-item">
-          <a href="video_watched_list.php" class="nav-link">
-              <i class="nav-icon fa fa-video"></i>
-              <p>Watched List</p>
-            </a>
-          </li>
-          </ul>
-          </li>
-
-          <li class="nav-item">
-            <a href="account_detail.php" class="nav-link">
-              <i class="nav-icon fas fa-rupee-sign"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-user-circle"></i>
               <p>
-                Income Details
+                User's Detaill
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="network_tree.php" class="nav-link">
-              <i class="nav-icon fas fa-network-wired"></i>
-              <p>
-                Go to Network
-               </p>
-            </a>
-            
-          </li>
-          <li class="nav-item">
-            <a href="withdraw.php" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Withdraw
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+            <?php
+              // if (strpos($ROLE, $USER_PROFILE) !== false) {
+              ?>
+              <li class="nav-item">
+                <a href="user_profile.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Update Profile</p>
+                </a>
+              </li>
+              <?php //} ?>
+              <?php
+                      //  if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
+                        ?>
+              <li class="nav-item">
+                <a href="user_registration_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Registerd Users</p>
+                </a>
+              </li>
+              <?php //} ?>
+              <li class="nav-item">
+                <a href="user_account_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>User Acount Details</p>
+                </a>
+              </li> 
+            </ul>
           </li>
           
-
-
-          <li class="nav-item">
-            <a href="pan_upload.php" class="nav-link">
-              <i class="nav-icon fa fa-upload"></i>
-              <p>
-              PAN Card Upload
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-upload"></i>
+              <p> 
+                Media & Gallery
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="upload_gallery_image.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Add Gallery images</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="gallery_record.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Gallery Records</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="exam_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Rejected Donation</p>
+                </a>
+              </li> 
+            </ul>
           </li>
+         -->
+        
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-
-  <?php } else{
-header('Location:index.php');
-  }
-  ?>
+<!-- modal box start-->
+<div class="modal fade" id="modal-changepass">
+        <div class="modal-dialog">
+          <form action="action/change_userpass_post.php" method="post" enctype="multipart/form-data">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Change Password</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                 <div class="form-group">
+                    <label>Password*</label>
+                    <input type="password"  class="form-control" name="userPass" 
+                     placeholder="Enter New Password" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <input type="hidden" name="userId" value="">
+              <button type="submit" name="submit" class="btn btn-primary"></i>Submit</button>
+            </div>
+          </div>
+          </form>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- modal box end-->

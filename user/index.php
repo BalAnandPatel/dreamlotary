@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Psp News | Log in</title>
+  <title>Dream Lotary</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -17,15 +17,15 @@
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card">
-    <div class="login-logo bg-gray">
-    <a href="#"><b>Welcome Back!!</b></a>
-  </div>
+  <div class="card-header text-center">
+      <a href="index.php" class="h1"><b>Dream</b>Lotary</a>
+    </div>
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="#action/login_post.php" method="post">
+      <form action="action/user_login_post.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="email" class="form-control" placeholder="Email" autocomplete="off" required>
+          <input type="email" name="userEmail" class="form-control" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off" required>
+          <input type="password" name="userPass" class="form-control" placeholder="Password" autocomplete="off" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -58,9 +58,9 @@
       </form>
 <div class="row mt-3">
   <div class="col-6">
-      <p class="mb-2">
+      <p class="mb-0">
       <i class="fa fa-lock"></i>
-        <a href="#forgot-password.php" class="text-center text-bold">Forgot Password ?</a>
+        <a href="#forgot-password.php" class="text-center text-bold">Forgot Password?</a>
       </p>
     </div>
     <div class="col-6">

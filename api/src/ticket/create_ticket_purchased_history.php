@@ -24,14 +24,14 @@ $data = json_decode(file_get_contents("php://input"));
 if(
 
    !empty($data->ticketAmount) &&
-   !empty($data->lotaryAmount)  
+   !empty($data->lotteryAmount)  
 )
 
 {   
     $create_tickethistory->userId = $data->userId;
     $create_tickethistory->ticketAmount = $data->ticketAmount;
-    $create_tickethistory->lotaryAmount = $data->lotaryAmount;
-    $create_tickethistory->lotaryNum = $data->lotaryNum;
+    $create_tickethistory->lotteryAmount = $data->lotteryAmount;
+    $create_tickethistory->lotteryNum = $data->lotteryNum;
     $create_tickethistory->status = $data->status;
     $create_tickethistory->createdOn = $data->createdOn;
     $create_tickethistory->createdBy = $data->createdBy;

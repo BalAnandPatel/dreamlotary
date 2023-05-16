@@ -40,8 +40,8 @@ if($num>0){
 
             "id" => $id,
             "ticketAmount"=>$ticketAmount,
-            "lotaryAmount"=>$lotaryAmount,
-            "lotaryNum"=>$lotaryNum,
+            "lotteryAmount"=>$lotteryAmount,
+            "lotteryNum"=>$lotteryNum,
             "status"=>$status,
             "createdBy"=>$createdBy,
             "createdOn"=>$createdOn

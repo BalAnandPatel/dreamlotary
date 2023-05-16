@@ -9,7 +9,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Dream Lotary</title>
+  <title>Dream Lottery </title>
 
     <script src="https://kit.fontawesome.com/5220a54d1d.js" crossorigin="anonymous"></script>
 
@@ -50,7 +50,7 @@
           <!-- <a class="navbar-brand" href="index.php">
             <img src="images/logo.png" alt="" width="50px" height="50px">
             <span style="align-items: center;">
-              Dream Lotary
+              Dream Lottery 
             </span>
           </a> -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,10 +100,10 @@
                   <a class="nav-link" href="payment.php"> Payment </a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="lotary.php">lotary </a>
+                  <a class="nav-link" href="lottery.php">Lottery</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#login.php"><i class="fa-solid fa-user"></i> Login </a>
+                  <a class="nav-link" onclick="goLogin()" href="#"><i class="fa-solid fa-user"></i> Login </a>
                 </li>
               </ul>
             </div>
