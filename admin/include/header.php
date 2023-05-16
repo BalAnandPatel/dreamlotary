@@ -150,6 +150,12 @@
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Ticket List</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="purchased_ticket_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Purchased Ticket List</p>
+                </a>
               </li> 
             </ul>
           </li>

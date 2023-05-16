@@ -85,9 +85,9 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotaryNum; ?></td>
                     <td class="col-md-1">
                       <?php if($value1->status=='1'){?>
-                      <button type="button" name="submit" class="btn btn-light btn-sm">Not Purchased</button>
+                      <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">Not Purchased</button>
                       <?php }else if($value1->status=='2'){?>
-                      <button type="button" class="btn btn-success" disabled>Purchased</button>
+                      <button type="button" class="btn btn-light btn-sm rounded-0" disabled>Purchased</button>
                       <?php } ?>
                     </td>
                   </tr>

@@ -1,8 +1,11 @@
 <?php
 include "include/header.php";
 
-$url = $URL."ticket/read_ticket.php";
-$data = array();
+$url = $URL."ticket/read_ticket_byStatus.php";
+$status=2;
+$userType=$_SESSION["USER_TYPE"];
+$userId=$_SESSION["USER_ID"];
+$data = array("status"=>$status, "userId"=>$userId, "userType"=>$userType);
 //print_r($data);
 $postdata = json_encode($data);
 $client = curl_init($url);
@@ -37,7 +40,7 @@ $result = json_decode($response);
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Purchase Ticket</li>
+              <li class="breadcrumb-item active">Purchased Ticket List</li>
             </ol>
           </div>
         </div>
@@ -52,7 +55,7 @@ $result = json_decode($response);
             
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Ticket details</h3>
+                <h3 class="card-title">Purchased Ticket details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -63,8 +66,9 @@ $result = json_decode($response);
                     <th>Ticket Amount</th>
                     <th>Lotary Amount</th>
                     <th>Lotary Number</th>
-                    <th>Purchase</th>
-                
+                    <th>Status</th>
+                    <th>Purchased By</th>
+                    <th>Select</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -84,17 +88,17 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotaryAmount; ?></td>
                     <td><?php echo $value1->lotaryNum; ?></td>
                     <td class="col-md-1">
-                      <form action="action/ticket_purchase_post.php" method="post">
-                      <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
-                      <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
-                      <input type="hidden" name="lotaryAmount" value="<?php echo $value1->lotaryAmount; ?>">
-                      <input type="hidden" name="lotaryNum" value="<?php echo $value1->lotaryNum; ?>">
                       <?php if($value1->status=='1'){?>
-                      <button type="submit" name="submit" class="btn btn-success">Purchase</button>
+                      <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">Not Purchased</button>
                       <?php }else if($value1->status=='2'){?>
-                      <button type="button" class="btn btn-success" disabled>Purchased</button>
+                      <button type="button" class="btn btn-light btn-sm rounded-0">Purchased</button>
                       <?php } ?>
-                     </form>
+                    </td>
+                    <td><?php echo $value1->createdBy; ?></td>
+                    <td>
+                        <div class="form-group">
+                        <input type="checkbox">
+                        </div>
                     </td>
                   </tr>
              

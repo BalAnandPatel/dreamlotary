@@ -50,7 +50,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create ticket histry"));
+        echo json_encode(array("message" => "Unable to create ticket history"));
     }
 }
   
@@ -61,6 +61,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to create ticket histry. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create ticket history. Data is incomplete."));
 }
 ?>

@@ -20,8 +20,11 @@ $db = $database->getConnection();
 $read_ticket = new Ticket($db);
   
 $data = json_decode(file_get_contents("php://input"));
+$read_ticket->userType = $data->userType;
+$read_ticket->userId = $data->userId;
+$read_ticket->status = $data->status;
 //print_r($data);
-$stmt = $read_ticket->readTicketDetails();
+$stmt = $read_ticket->readTicketDetailsByStatus();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
@@ -38,7 +41,8 @@ if($num>0){
   
         $read_ticket_item=array(
 
-            "id" => $id,
+            "id"=>$id,
+            "userId"=>$userId,
             "ticketAmount"=>$ticketAmount,
             "lotaryAmount"=>$lotaryAmount,
             "lotaryNum"=>$lotaryNum,

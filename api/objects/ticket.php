@@ -3,8 +3,9 @@ class Ticket{
 
     private $conn;
     private $table_name = "ticket";
+    private $ticket_purchase = "ticket_purchase";
 
-    public $id, $ticketAmount, $status, $lotaryNum, $lotaryAmount, $createdOn, $createdBy;
+    public $id, $userId, $ticketAmount, $status, $lotaryNum, $lotaryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
 
     public function __construct($db){
         $this->conn = $db;
@@ -57,7 +58,7 @@ class Ticket{
   
         // query to insert record
     $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " . $this->ticket_purchase . "
                 SET
                          userId=:userId,
                          ticketAmount=:ticketAmount,
@@ -110,6 +111,26 @@ class Ticket{
         id, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->table_name;
         $stmt = $this->conn->prepare($query); 
         // $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        return $stmt;
+    }
+    
+    function readTicketDetailsByStatus(){
+        if($this->userType==1){
+            $query="Select 
+            id, userId, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bindParam(":status", $this->status);
+
+        }else{
+            $query="Select 
+            id, userId, ticketAmount, lotaryAmount, lotaryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bindParam(":status", $this->status);
+            $stmt->bindParam(":userId", $this->userId);
+
+        }
+
         $stmt->execute();
         return $stmt;
     }
