@@ -69,7 +69,11 @@ $result = json_decode($response);
                     <th>Status</th>
                     <th>Purchased By</th>
                     <th>Purchase Date</th>
+                    <?php
+                     if($userType==1){ 
+                    ?>
                     <th>Select</th>
+                    <?php } ?>
                   </tr>
                   </thead>
                   <tbody>
@@ -89,19 +93,31 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotteryAmount; ?></td>
                     <td><?php echo $value1->lotteryNum; ?></td>
                     <td class="col-md-1">
-                      <?php if($value1->status=='1'){?>
-                      <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">Not Purchased</button>
-                      <?php }else if($value1->status=='2'){?>
-                      <button type="button" class="btn btn-light btn-sm rounded-0">Purchased</button>
-                      <?php } ?>
+                      <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">
+                      <?php if($value1->status=='1'){
+                        echo "Not Purchased";
+                      }else if($value1->status=='2'){
+                        echo "Purchased";
+                      }
+                      ?>
+                    </button>
                     </td>
                     <td><?php echo $value1->createdBy; ?></td>
                     <td><?php echo date('d-m-Y',strtotime($value1->createdOn)); ?></td>
-                    <td>
-                        <div class="form-group">
-                        <input type="checkbox">
-                        </div>
+                    <?php
+                     if($userType==1){ 
+                    ?>
+                    <td class="col-md-2">
+                      <form action="action/ticket_purchase_post.php" method="post">
+                      <input type="hidden" name="ticketId" value="<?php echo $value1->ticketId; ?>">
+                      <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
+                      <input type="hidden" name="lotteryAmount" value="<?php echo $value1->lotteryAmount; ?>">
+                      <input type="hidden" name="lotteryNum" value="<?php echo $value1->lotteryNum; ?>">
+                      <input type="hidden" name="status" value="3">
+                        <button class="btn btn-primary" type="submit" name="submit">Release Result</button>
+                      </form>
                     </td>
+                   <?php } ?>
                   </tr>
              
                   <?php } } ?>

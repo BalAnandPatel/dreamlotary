@@ -85,10 +85,11 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotteryNum; ?></td>
                     <td class="col-md-1">
                       <form action="action/ticket_purchase_post.php" method="post">
-                      <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
+                      <input type="hidden" name="ticketId" value="<?php echo $value1->id; ?>">
                       <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
                       <input type="hidden" name="lotteryAmount" value="<?php echo $value1->lotteryAmount; ?>">
                       <input type="hidden" name="lotteryNum" value="<?php echo $value1->lotteryNum; ?>">
+                      <input type="hidden" name="status" value="2">
                       <?php if($value1->status=='1'){?>
                       <button type="submit" name="submit" class="btn btn-success">Purchase</button>
                       <?php }else if($value1->status=='2'){?>

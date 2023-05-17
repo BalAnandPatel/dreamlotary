@@ -23,14 +23,16 @@ $data = json_decode(file_get_contents("php://input"));
 // mavarke sure data is not empty
 if(
     
-    !empty($data->id) &&
+    !empty($data->ticketId) &&
     !empty($data->status) 
 
 )
 
 {
-    $ticket_purchased->id=$data->id;
+    $ticket_purchased->id=$data->ticketId;
     $ticket_purchased->status = $data->status;
+    $ticket_purchased->updatedOn=$data->updatedOn;
+    $ticket_purchased->updatedBy=$data->updatedBy;
    
 
     if($ticket_purchased->updateTicketPurchased()){

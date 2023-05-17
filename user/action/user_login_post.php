@@ -21,15 +21,15 @@ $response = curl_exec($client);
 // curl_close($client);
 //print_r($response);
 
-$decode = json_decode($response);
+$decode = (json_decode($response));
 
-//print_r($decode);
+// echo $decode->message;
 
-if($decode->message!="Request Failed"){
-// echo "hello";
-  echo $result = JWT::decode($decode->access_token, $SECRET_KEY, array('HS256'));
-  // print_r($result);
-  if ($result->data->userEmail==$_POST['userEmail'] &&
+if($decode->message!=="Request Failed"){
+
+$result = JWT::decode($decode->access_token, $SECRET_KEY, array('HS256'));
+
+if($result->data->userEmail==$_POST['userEmail'] &&
 $result->data->userPass==$_POST['userPass'])
 {
   $uid=$result->data->id;
@@ -45,16 +45,16 @@ $result->data->userPass==$_POST['userPass'])
   $_SESSION["NAME"]=$name;
   $_SESSION["JWT"]=$result;
   $_SESSION['MEMBBER_FROM']=$result->data->createdOn;
- //print_r($_SESSION['SPONSOR_ID']);
- // header('Location:../adm_dashboard.php');
-  echo "success";
+
+ header('Location:../adm_dashboard.php');
+
 }else{
- echo "user or pass not match"; 
+ $msg="Incorrect User Email or Password"; 
+ header('Location:../index.php');
 }
  }else{
-   echo "failed";
   //print_r($decode->message);
- //header('Location:../index.php?msg='.$decode->message); 
+  header('Location:../index.php?msg='.$decode->message); 
  }
 
 // function giplCurl($api,$postdata){

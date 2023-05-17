@@ -1,4 +1,4 @@
-<?php
+`<?php
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -43,6 +43,7 @@ if($num>0){
 
             "id"=>$id,
             "userId"=>$userId,
+            "ticketId"=>$ticketId,
             "ticketAmount"=>$ticketAmount,
             "lotteryAmount"=>$lotteryAmount,
             "lotteryNum"=>$lotteryNum,

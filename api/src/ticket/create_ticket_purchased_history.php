@@ -28,6 +28,7 @@ if(
 )
 
 {   
+    $create_tickethistory->ticketId = $data->ticketId;
     $create_tickethistory->userId = $data->userId;
     $create_tickethistory->ticketAmount = $data->ticketAmount;
     $create_tickethistory->lotteryAmount = $data->lotteryAmount;

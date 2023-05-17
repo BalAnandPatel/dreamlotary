@@ -60,6 +60,7 @@ class Ticket{
     $query = "INSERT INTO
                     " . $this->ticket_purchase . "
                 SET
+                         ticketId=:ticketId,
                          userId=:userId,
                          ticketAmount=:ticketAmount,
                          lotteryAmount=:lotteryAmount,
@@ -72,6 +73,7 @@ class Ticket{
         // prepare query
         $stmt = $this->conn->prepare($query);
         $this->userId=htmlspecialchars(strip_tags($this->userId));
+        $this->ticketId=htmlspecialchars(strip_tags($this->ticketId));
         $this->ticketAmount=htmlspecialchars(strip_tags($this->ticketAmount));
         $this->lotteryAmount=htmlspecialchars(strip_tags($this->lotteryAmount));
         $this->lotteryNum=htmlspecialchars(strip_tags($this->lotteryNum));
@@ -81,6 +83,7 @@ class Ticket{
         
         //bind values
         $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":ticketId", $this->ticketId);
         $stmt->bindParam(":ticketAmount", $this->ticketAmount);
         $stmt->bindParam(":lotteryAmount", $this->lotteryAmount);
         $stmt->bindParam(":lotteryNum", $this->lotteryNum);
@@ -118,13 +121,13 @@ class Ticket{
     function readTicketDetailsByStatus(){
         if($this->userType==1){
             $query="Select 
-            id, userId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
 
         }else{
             $query="Select 
-            id, userId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+            id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
             $stmt->bindParam(":userId", $this->userId);
@@ -140,17 +143,23 @@ class Ticket{
        $query = "UPDATE 
                     " . $this->table_name . "
                 SET
-                            status=:status
+                            status=:status,
+                            updatedOn=:updatedOn,
+                            updatedBy=:updatedBy
                             WHERE id=:id"; 
                           
         // prepare query
         $stmt = $this->conn->prepare($query);
         $this->id=htmlspecialchars(strip_tags($this->id));
         $this->status=htmlspecialchars(strip_tags($this->status));
+        $this->updatedOn=htmlspecialchars(strip_tags($this->updatedOn));
+        $this->updatedBy=htmlspecialchars(strip_tags($this->updatedBy));
         
         //bind values
         $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":status", $this->status);      
+        $stmt->bindParam(":status", $this->status);
+        $stmt->bindParam(":updatedOn", $this->updatedOn); 
+        $stmt->bindParam(":updatedBy", $this->updatedBy);       
       
         // execute query
         if($stmt->execute()){
