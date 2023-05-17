@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 15, 2023 at 12:25 PM
+-- Generation Time: May 17, 2023 at 12:11 PM
 -- Server version: 5.6.20-log
 -- PHP Version: 5.4.31
 
@@ -29,27 +29,24 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `ticket` (
 `id` int(255) NOT NULL,
   `ticketAmount` varchar(255) NOT NULL,
-  `lotaryAmount` varchar(255) NOT NULL,
-  `lotaryNum` varchar(255) NOT NULL,
+  `lotteryAmount` varchar(255) NOT NULL,
+  `lotteryNum` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `createdOn` timestamp NOT NULL,
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `ticket`
 --
 
-INSERT INTO `ticket` (`id`, `ticketAmount`, `lotaryAmount`, `lotaryNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
-(9, '100', '100000', 'DREAM1683962913', 2, '2023-05-13 07:28:33', 'Admin', '0000-00-00 00:00:00', ''),
-(8, '55', '5000', 'DREAM1683794705', 1, '2023-05-11 08:45:05', 'Admin', '0000-00-00 00:00:00', ''),
-(10, '100', '1000', 'DREAM1684143039', 1, '2023-05-15 09:30:39', 'Admin', '0000-00-00 00:00:00', ''),
-(11, '300', '3000', 'DREAM1684143665', 1, '2023-05-15 09:41:05', 'Admin', '0000-00-00 00:00:00', ''),
-(12, '200', '5000', 'DREAM1684143893', 1, '2023-05-15 09:44:53', 'Admin', '0000-00-00 00:00:00', ''),
-(13, '100', '100000', 'DREAM1683962913', 1, '2023-05-15 00:21:00', '', '0000-00-00 00:00:00', ''),
-(14, '100', '100000', 'DREAM1683962913', 1, '2023-05-15 00:22:00', '9', '0000-00-00 00:00:00', '');
+INSERT INTO `ticket` (`id`, `ticketAmount`, `lotteryAmount`, `lotteryNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
+(18, '500', '5000', 'DREAM1684228037', 2, '2023-05-16 09:07:17', 'Admin', '2023-05-16 23:26:00', 'Admin'),
+(17, '200', '20000', 'DREAM1684214347', 1, '2023-05-16 05:19:07', 'Admin', '0000-00-00 00:00:00', ''),
+(16, '50', '500', 'DREAM1684214327', 1, '2023-05-16 05:18:47', 'Admin', '0000-00-00 00:00:00', ''),
+(15, '100', '1000', 'DREAM1684214295', 1, '2023-05-16 05:18:15', 'Admin', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -59,16 +56,25 @@ INSERT INTO `ticket` (`id`, `ticketAmount`, `lotaryAmount`, `lotaryNum`, `status
 
 CREATE TABLE IF NOT EXISTS `ticket_purchase` (
 `id` int(255) NOT NULL,
+  `ticketId` varchar(255) NOT NULL,
   `userId` varchar(255) NOT NULL,
   `ticketAmount` varchar(255) NOT NULL,
-  `lotaryAmount` varchar(255) NOT NULL,
-  `lotaryNum` varchar(50) NOT NULL,
+  `lotteryAmount` varchar(255) NOT NULL,
+  `lotteryNum` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `createdOn` timestamp NOT NULL,
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `ticket_purchase`
+--
+
+INSERT INTO `ticket_purchase` (`id`, `ticketId`, `userId`, `ticketAmount`, `lotteryAmount`, `lotteryNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
+(10, '18', '4', '500', '5000', 'DREAM1684228037', 3, '2023-05-16 23:26:00', 'Admin', '0000-00-00 00:00:00', ''),
+(9, '18', '3', '500', '5000', 'DREAM1684228037', 2, '2023-05-16 23:22:00', 'Mrityunjay Singh', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -91,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `user_account` (
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `user_account`
@@ -99,7 +105,8 @@ CREATE TABLE IF NOT EXISTS `user_account` (
 
 INSERT INTO `user_account` (`id`, `userId`, `accountHolder`, `bankName`, `branchName`, `ifscCode`, `accountNum`, `googlePayNum`, `phonePayNum`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
 (1, '3', '', '', '', '', '', '', '', 1, '2023-05-11 20:47:38', 'Mrityunjay singh', '0000-00-00 00:00:00', ''),
-(2, '4', 'Dhananjay singh', 'sbi', 'mungra badshahpur', 'ubino222', '12365852600', '3658956200', '2365896500', 1, '2023-05-11 20:55:07', 'Dhananjay singh', '2023-05-12 18:30:00', '4');
+(2, '4', 'Dhananjay Singh', 'sbi', 'mungra badshahpur', 'ubino222', '12365852600', '3658956200', '2365896500', 1, '2023-05-11 20:55:07', 'Dhananjay singh', '2023-05-15 18:30:00', '4'),
+(3, '5', 'Yash kumar', 'sbi', 'mungra', 'UBI00256', '2569854855', '365896589', '369875698', 1, '2023-05-15 22:17:23', 'Yash', '2023-05-15 18:30:00', '5');
 
 -- --------------------------------------------------------
 
@@ -120,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
   `createdBy` varchar(255) NOT NULL,
   `updatedOn` timestamp NOT NULL,
   `updatedBy` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `user_login`
@@ -128,7 +135,8 @@ CREATE TABLE IF NOT EXISTS `user_login` (
 
 INSERT INTO `user_login` (`id`, `userType`, `userRole`, `userName`, `userMobile`, `userEmail`, `userPass`, `status`, `createdOn`, `createdBy`, `updatedOn`, `updatedBy`) VALUES
 (4, 1, 'Admin', 'Admin', '25232522', 'admin@gmail.com', '12345', 1, '2023-05-11 20:55:07', 'Admin', '0000-00-00 00:00:00', ''),
-(3, 2, 'User', 'Mrityunjay singh', '12233', 'ms@gmail.com', '12345', 1, '2023-05-11 20:11:03', 'Mrityunjay singh', '0000-00-00 00:00:00', '');
+(3, 2, 'User', 'Mrityunjay singh', '12233', 'ms@gmail.com', '12345', 1, '2023-05-11 20:11:03', 'Mrityunjay singh', '0000-00-00 00:00:00', ''),
+(5, 2, 'User', 'Yash', '3698565489', 'yash@gmail.com', '123456', 1, '2023-05-15 22:17:23', 'Yash', '0000-00-00 00:00:00', '');
 
 --
 -- Indexes for dumped tables
@@ -166,22 +174,22 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `ticket_purchase`
 --
 ALTER TABLE `ticket_purchase`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user_account`
 --
 ALTER TABLE `user_account`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
