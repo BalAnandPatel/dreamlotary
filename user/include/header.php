@@ -103,8 +103,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="image/logo/adminlogo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin Control</span>
+      <img src="image/logo/user_icon.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><small><?php echo $_SESSION["NAME"]; ?></small></span>
     </a>
 
     <!-- Sidebar -->
@@ -155,6 +155,12 @@
                 <a href="purchased_ticket_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Purchased Ticket List</p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a href="result_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Result</p>
                 </a>
               </li> 
             </ul>

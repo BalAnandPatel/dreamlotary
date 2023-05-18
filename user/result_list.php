@@ -1,10 +1,10 @@
 <?php
 include "include/header.php";
 
-$url = $URL."ticket/read_ticket_byStatus.php";
-$status=2;
+$url = $URL."ticket/read_release_result.php";
+$status=3;
 $userType=$_SESSION["USER_TYPE"];
-$userId=$_SESSION["USER_ID"];
+$userId=3;
 $data = array("status"=>$status, "userId"=>$userId, "userType"=>$userType);
 //print_r($data);
 $postdata = json_encode($data);
@@ -40,7 +40,7 @@ $result = json_decode($response);
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Purchased Ticket List</li>
+              <li class="breadcrumb-item active">Result</li>
             </ol>
           </div>
         </div>
@@ -55,7 +55,7 @@ $result = json_decode($response);
             
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Purchased Ticket details</h3>
+                <h3 class="card-title">Lottery Result</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -108,8 +108,7 @@ $result = json_decode($response);
                      if($userType==1){ 
                     ?>
                     <td class="col-md-2">
-                      <form action="action/release_result_post.php" method="post">
-                      <input type="hidden" name="userId" value="<?php echo $value1->userId; ?>">
+                      <form action="action/ticket_purchase_post.php" method="post">
                       <input type="hidden" name="ticketId" value="<?php echo $value1->ticketId; ?>">
                       <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
                       <input type="hidden" name="lotteryAmount" value="<?php echo $value1->lotteryAmount; ?>">

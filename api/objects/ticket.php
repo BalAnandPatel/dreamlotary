@@ -5,7 +5,7 @@ class Ticket{
     private $table_name = "ticket";
     private $ticket_purchase = "ticket_purchase";
 
-    public $id, $userId, $ticketAmount, $status, $lotteryNum, $lotteryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
+    public $id, $userId, $ticketId, $ticketAmount, $status, $lotteryNum, $lotteryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
 
     public function __construct($db){
         $this->conn = $db;
@@ -111,7 +111,7 @@ class Ticket{
 
     function readTicketDetails(){
         $query="Select 
-        id, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->table_name;
+        id, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->table_name." where status=1 or status=2";
         $stmt = $this->conn->prepare($query); 
         // $stmt->bindParam(":id", $this->id);
         $stmt->execute();
@@ -120,14 +120,39 @@ class Ticket{
     
     function readTicketDetailsByStatus(){
         if($this->userType==1){
-            $query="Select 
-            id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+
+            // $query="Select th.id, th.userId, th.ticketId, th.ticketAmount, th.lotteryAmount, th.lotteryNum, th.status, th.createdOn, th.createdBy from " .$this->ticket_purchase . " as th left join ".$this->table_name." as td on td.id=th.ticketId where td.status=:status";
+            // $stmt = $this->conn->prepare($query); 
+            // $stmt->bindParam(":status", $this->status);
+
+            $query="Select th.id, th.userId, th.ticketId, th.ticketAmount, th.lotteryAmount, th.lotteryNum, th.status, th.createdOn, th.createdBy from " .$this->ticket_purchase . " as th left join ".$this->table_name." as td on td.id=th.ticketId where td.status=:status";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
 
         }else{
-            $query="Select 
-            id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+
+            $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bindParam(":status", $this->status);
+            $stmt->bindParam(":userId", $this->userId);
+
+        }
+
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function releaseResultsList(){
+        if($this->userType==1){
+
+
+            $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bindParam(":status", $this->status);
+
+        }else{
+
+            $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
             $stmt->bindParam(":userId", $this->userId);

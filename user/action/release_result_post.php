@@ -2,7 +2,8 @@
 include '../../constant.php';
 
 if(isset($_POST["status"])){
- $userId=$_SESSION["USER_ID"];
+
+ $userId=$_POST["userId"];
  $ticketId=$_POST["ticketId"];
  $status=$_POST["status"];
  $ticketAmount=$_POST["ticketAmount"];
@@ -32,7 +33,7 @@ if(isset($_POST["status"])){
  $history_result=url_encode_Decode($url_ticketHistory,$history_postdata);
  //print_r($history_result);
 
-header('Location:../purchase_ticket.php');
+header('Location:../purchased_ticket_list.php');
 
  }
 
