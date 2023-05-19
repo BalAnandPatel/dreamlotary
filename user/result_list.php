@@ -72,7 +72,7 @@ $result = json_decode($response);
                     <?php
                      if($userType==1){ 
                     ?>
-                    <th>Select</th>
+                    <th>Payment</th>
                     <?php } ?>
                   </tr>
                   </thead>
@@ -94,8 +94,8 @@ $result = json_decode($response);
                     <td><?php echo $value1->lotteryNum; ?></td>
                     <td class="col-md-1">
                       <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">
-                      <?php if($value1->status=='1'){
-                        echo "Not Purchased";
+                      <?php if($value1->status=='3'){
+                        echo "Released Result";
                       }else if($value1->status=='2'){
                         echo "Purchased";
                       }
@@ -108,13 +108,9 @@ $result = json_decode($response);
                      if($userType==1){ 
                     ?>
                     <td class="col-md-2">
-                      <form action="action/ticket_purchase_post.php" method="post">
-                      <input type="hidden" name="ticketId" value="<?php echo $value1->ticketId; ?>">
-                      <input type="hidden" name="ticketAmount" value="<?php echo $value1->ticketAmount; ?>">
-                      <input type="hidden" name="lotteryAmount" value="<?php echo $value1->lotteryAmount; ?>">
-                      <input type="hidden" name="lotteryNum" value="<?php echo $value1->lotteryNum; ?>">
-                      <input type="hidden" name="status" value="3">
-                        <button class="btn btn-primary" type="submit" name="submit">Release Result</button>
+                      <form action="user_payment_byAdmin.php" method="post">
+                      <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
+                      <button class="btn btn-success" type="submit" name="submit">Pay Now</button>
                       </form>
                     </td>
                    <?php } ?>

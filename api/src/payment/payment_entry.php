@@ -22,27 +22,44 @@ $data = json_decode(file_get_contents("php://input"));
 //print_r($data);  
 // make sure data is not empty
 if(
-    !empty($data->user_id) &&
-    !empty($data->amount) &&
-    !empty($data->transaction_id) &&
-    !empty($data->status) &&
-    !empty($data->created_on) &&
-    !empty($data->created_by)
+    !empty($data->ticketAmount) &&
+    !empty($data->lotteryNum) &&
+    !empty($data->lotteryAmount) &&
+    !empty($data->userId) &&
+    !empty($data->userName) &&
+    !empty($data->bankName) &&
+    !empty($data->branchName) &&
+    !empty($data->accountNum) &&
+    !empty($data->ifscCode) &&
+    !empty($data->accountHolder) &&
+    !empty($data->paymentMode) &&
+    !empty($data->slipNum) &&
+    !empty($data->remark) &&
+    !empty($data->status) 
 )
 
 {
-    $payment->user_id = $data->user_id;
-    $payment->amount = $data->amount;
-    $payment->transaction_id = $data->transaction_id;
-    $payment->request_id = $data->request_id;
+    $payment->ticketAmount = $data->ticketAmount;
+    $payment->lotteryNum = $data->lotteryNum;
+    $payment->lotteryAmount = $data->lotteryAmount;
+    $payment->userId = $data->userId;
+    $payment->userName = $data->userName;
+    $payment->bankName = $data->bankName;
+    $payment->branchName = $data->branchName;
+    $payment->accountNum = $data->accountNum;
+    $payment->ifscCode = $data->ifscCode;
+    $payment->accountHolder = $data->accountHolder;
+    $payment->paymentMode = $data->paymentMode;
+    $payment->slipNum = $data->slipNum;
+    $payment->remark = $data->remark;
     $payment->status = $data->status;
-    $payment->created_by = $data->created_by;
-    $payment->created_on = $data->created_on;
+    $payment->createdOn = $data->createdOn;
+    $payment->createdBy = $data->createdBy;
        
-    var_dump($data);
+    // var_dump($data);
     // create the reg
-    if($payment->payment_entry()){
-        echo "done";
+    if($payment->paymentEentry()){
+        // echo "done";
 
         http_response_code(201);
         echo json_encode(array("message"=>"Successfull"));
