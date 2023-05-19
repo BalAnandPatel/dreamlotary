@@ -82,9 +82,18 @@
         return false;
     }
 
+     public function readMaxId(){
+        $query="Select max(id) as id from " .$this->payment_history;
+        $stmt = $this->conn->prepare($query); 
+        // $stmt->bindParam(":user_id", $this->user_id);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
 
     public function readPaymentDetails(){
-        // $query="Select userName,userEmail,userMobile,th.userId,accountHolder,accountNum,ifscCode,bankName,branchName,googlePayNum,phonePayNum,ticketAmount,lotteryAmount,lotteryNum from user_account as ua left join user_login as ul on ua.userId=ul.id left join ticket_purchase as th on ul.id=th.userId where th.status=3 and th.id=:id";
+
         $query="Select userName,userEmail,userMobile,th.userId,accountHolder,accountNum,ifscCode,bankName,branchName,googlePayNum,phonePayNum,ticketAmount,lotteryAmount,lotteryNum from ticket_purchase as th left join user_login as ul on th.userId=ul.id left join user_account as ua on th.userId=ua.userId where th.status=3 and th.id=:id";
         $stmt = $this->conn->prepare($query); 
         $stmt->bindParam(":id", $this->id);
@@ -93,14 +102,22 @@
         return $stmt;
     }
 
-    public function confirm_payment(){
-        $query="Select pid,user_id,transaction_id,amount,status,request_id ,created_by,created_on
-        from " .$this->table_name .  " where user_id=:user_id and transaction_id=:transaction_id and amount=:amount and status=1";
+    public function readPaymentHistory(){
+
+        if($this->userType==1){
+
+        $query="Select id,userId,userName,bankName,branchName,accountNum ,accountHolder,ifscCode,
+        paymentMode,slipNum,ticketAmount,lotteryAmount,lotteryNum,remark,status,createdOn,createdBy,updatedOn,updatedBy from " .$this->payment_history." where status=1";
         $stmt = $this->conn->prepare($query); 
-        $stmt->bindParam(":user_id", $this->user_id);
-        $stmt->bindParam(":amount", $this->amount);
-        $stmt->bindParam(":transaction_id", $this->transaction_id);
-       
+        // $stmt->bindParam(":user_id", $this->user_id);
+
+        }else{
+
+        $query="Select id,userId,userName,bankName,branchName,accountNum ,accountHolder,ifscCode,
+        paymentMode,slipNum,ticketAmount,lotteryAmount,lotteryNum,remark,status,createdOn,createdBy,updatedOn,updatedBy from " .$this->payment_history." where userId=:userId and status=1";
+        $stmt = $this->conn->prepare($query); 
+        $stmt->bindParam(":userId", $this->userId);
+        }
 
         $stmt->execute();
         return $stmt;

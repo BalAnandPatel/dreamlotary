@@ -63,7 +63,7 @@ cursor:pointer;
               <div class="card-header">
                 <h3 class="card-title">Account Details</h3>
               </div>
-              <form action="action/user_payment_byAdmin_post.php" method="post">
+              <form action="action/user_payment_byAdmin_post.php" method="post" enctype="multipart/form-data">
               <?php 
 								   foreach($result as $key => $value){
                    foreach($value as $key1 => $value1)
@@ -165,8 +165,8 @@ cursor:pointer;
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Payment Mode*</label>
-                         <select name="paymentMode" class="form-control jb_1">
-                           <option selected>--Select Payment Mode---</option>
+                         <select name="paymentMode" class="form-control jb_1" required>
+                           <option value="">--Select Payment Mode---</option>
                            <option value="Cash">Cash</option>
                            <option value="Google Pay">Google Pay</option>
                            <option value="Phone Pay">Phone Pay</option>
@@ -177,13 +177,13 @@ cursor:pointer;
                          <div class="form-group">
                           <label>Slip No.*</label>
                           <input type="text"  class="form-control" name="slipNum" 
-                           placeholder="Slip No." autocomplete="off">
+                           placeholder="Slip No." autocomplete="off" required>
                          </div>
                       </div>
                       <div class="col-md-4">
                          <div class="form-group">
                           <label>Upload Payment Slip*</label>
-                          <input type="file"  class="form-control" name="slip">
+                          <input type="file"  class="form-control" name="uploaded_slip" required>
                          </div>
                       </div>
                  </div>

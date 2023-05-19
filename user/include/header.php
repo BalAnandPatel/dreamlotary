@@ -201,6 +201,12 @@
                   <p>User Acount Details</p>
                 </a>
               </li> 
+              <li class="nav-item">
+                <a href="user_payment_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>User Payment Details</p>
+                </a>
+              </li>
             </ul>
           </li>
           

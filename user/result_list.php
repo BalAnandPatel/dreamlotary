@@ -24,15 +24,6 @@ $result = json_decode($response);
     <section class="content-header">
       <div class="container-fluid">
 
-        <?php if(isset($_SESSION['ticket_delete_success'])){ ?>
-
-                 <div class="alert alert-success" id="success-alert" role="alert">
-                  <?php echo $_SESSION['ticket_delete_success']; 
-                  unset($_SESSION['ticket_delete_success']); ?>
-                 </div>
-
-                <?php } ?>
-
         <div class="row mb-2">
           <div class="col-sm-6">
             <!-- <h1>Notification details</h1> -->

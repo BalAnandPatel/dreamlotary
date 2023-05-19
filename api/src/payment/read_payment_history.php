@@ -15,18 +15,16 @@ include_once '../../objects/payment.php';
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
-
+  
 // initialize object
 $payment = new payment($db);
   
 $data = json_decode(file_get_contents("php://input"));
 //print_r($data);
+$payment->userType=$data->userType;
+$payment->userId=$data->userId;
 
-$payment->user_id=$data->user_id;
-$payment->amount=$data->amount;
-$payment->transaction_id=$data->transaction_id;
-
-$stmt = $payment->confirm_payment();
+$stmt = $payment->readPaymentHistory();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
@@ -43,14 +41,23 @@ if($num>0){
   
         $payment_item=array(
 
-            "pid" => $pid,
-            "user_id"=>$user_id,
-            "amount"=>$amount,
-            "transaction_id"=>$transaction_id,
-            "request_id"=>$request_id,
+            "id" => $id,
+            "userId"=>$userId,
+            "userName"=>$userName,
+            "bankName"=>$bankName,
+            "branchName"=>$branchName,
+            "accountNum"=>$accountNum,
+            "accountHolder"=>$accountHolder,
+            "ifscCode"=>$ifscCode,
+            "paymentMode"=>$paymentMode,
+            "slipNum"=>$slipNum,
+            "ticketAmount"=>$ticketAmount,
+            "lotteryAmount"=>$lotteryAmount,
+            "lotteryNum"=>$lotteryNum,
+            "remark"=>$remark,
             "status"=>$status,
-            "created_by"=>$created_by,
-            "created_on"=>$created_on
+            "createdOn"=>$createdOn,
+            "createdBy"=>$createdBy
         );
   
         array_push($payments_arr["records"], $payment_item);
@@ -71,7 +78,7 @@ else{
   
     // tell the user no products found
     echo json_encode(
-        array("message" => "No user found.")
+        array("message" => "No payment history detail found.")
     );
 }
 ?>
