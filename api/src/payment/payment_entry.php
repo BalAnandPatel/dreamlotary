@@ -39,6 +39,7 @@ if(
 )
 
 {
+    $payment->ticketId = $data->ticketId;
     $payment->ticketAmount = $data->ticketAmount;
     $payment->lotteryNum = $data->lotteryNum;
     $payment->lotteryAmount = $data->lotteryAmount;

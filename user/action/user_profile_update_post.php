@@ -3,10 +3,10 @@
 if(isset($_POST["update_profile"])){	
  
  $userId=$_POST["userId"];
- $accountHolder=ucfirst($_POST["accountHolder"]);
- $bankName=$_POST["bankName"];
- $branchName=$_POST["branchName"];
- $ifscCode=$_POST["ifscCode"];
+ $accountHolder=ucwords($_POST["accountHolder"]);
+ $bankName=ucwords($_POST["bankName"]);
+ $branchName=ucwords($_POST["branchName"]);
+ $ifscCode=strtoupper($_POST["ifscCode"]);
  $accountNum=$_POST["accountNum"];
  $phonePayNum=$_POST["phonePayNum"];
  $googlePayNum=$_POST["googlePayNum"];

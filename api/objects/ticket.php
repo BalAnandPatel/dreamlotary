@@ -2,10 +2,12 @@
 class Ticket{
 
     private $conn;
+    private $payment_history = "payment_history";
+    private $user_login = "user_login";
     private $table_name = "ticket";
     private $ticket_purchase = "ticket_purchase";
 
-    public $id, $userId, $ticketId, $ticketAmount, $status, $lotteryNum, $lotteryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
+    public $id, $userName, $userId, $ticketId, $ticketAmount, $status, $lotteryNum, $lotteryAmount, $createdOn, $createdBy, $updatedOn, $updatedBy;
 
     public function __construct($db){
         $this->conn = $db;
@@ -146,13 +148,17 @@ class Ticket{
         if($this->userType==1){
 
 
-            $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            // $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status";
+            // $stmt = $this->conn->prepare($query); 
+            // $stmt->bindParam(":status", $this->status);
+
+            $query="Select th.id, ph.status as paymentStatus, user.userName, th.userId, th.ticketId, th.ticketAmount, th.lotteryAmount, th.lotteryNum, th.status, th.createdOn, th.createdBy from " .$this->ticket_purchase . " as th left join ".$this->user_login." as user on user.id=th.userId left join ".$this->payment_history." as ph on th.ticketId=ph.ticketId where th.status=:status";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
 
         }else{
 
-            $query="Select id, userId, ticketId, ticketAmount, lotteryAmount, lotteryNum, status, createdOn, createdBy from " .$this->ticket_purchase . " where status=:status and userId=:userId";
+        $query="Select th.id, ph.status as paymentStatus, user.userName, th.userId, th.ticketId, th.ticketAmount, th.lotteryAmount, th.lotteryNum, th.status, th.createdOn, th.createdBy from " .$this->ticket_purchase . " as th left join ".$this->user_login." as user on user.id=th.userId left join ".$this->payment_history." as ph on th.ticketId=ph.ticketId where th.status=:status and th.userId=:userId ";
             $stmt = $this->conn->prepare($query); 
             $stmt->bindParam(":status", $this->status);
             $stmt->bindParam(":userId", $this->userId);

@@ -4,7 +4,7 @@ include "include/header.php";
 $url = $URL."ticket/read_release_result.php";
 $status=3;
 $userType=$_SESSION["USER_TYPE"];
-$userId=3;
+$userId=$_SESSION["USER_ID"];
 $data = array("status"=>$status, "userId"=>$userId, "userType"=>$userType);
 //print_r($data);
 $postdata = json_encode($data);
@@ -57,7 +57,7 @@ $result = json_decode($response);
                     <th>Ticket Amount</th>
                     <th>Lottery Amount</th>
                     <th>Lottery Number</th>
-                    <th>Status</th>
+                    <th>Payment Status</th>
                     <th>Purchased By</th>
                     <th>Purchase Date</th>
                     <?php
@@ -83,17 +83,17 @@ $result = json_decode($response);
                     <td><?php echo $value1->ticketAmount; ?></td>
                     <td><?php echo $value1->lotteryAmount; ?></td>
                     <td><?php echo $value1->lotteryNum; ?></td>
-                    <td class="col-md-1">
+                    <td class="col-md-2">
                       <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">
-                      <?php if($value1->status=='3'){
-                        echo "Released Result";
-                      }else if($value1->status=='2'){
-                        echo "Purchased";
+                      <?php if($value1->paymentStatus=='1'){
+                        echo "Paid";
+                      }else{
+                        echo "Not Paid";
                       }
                       ?>
                     </button>
                     </td>
-                    <td><?php echo $value1->createdBy; ?></td>
+                    <td><?php echo $value1->userName; ?></td>
                     <td><?php echo date('d-m-Y',strtotime($value1->createdOn)); ?></td>
                     <?php
                      if($userType==1){ 
@@ -101,7 +101,11 @@ $result = json_decode($response);
                     <td class="col-md-2">
                       <form action="user_payment_byAdmin.php" method="post">
                       <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
+                      <?php if($value1->paymentStatus==1){ ?>
+                      <button class="btn btn-success" type="button" disabled>Amount Paid</button>
+                      <?php }else{ ?>
                       <button class="btn btn-success" type="submit" name="submit">Pay Now</button>
+                      <?php } ?>
                       </form>
                     </td>
                    <?php } ?>

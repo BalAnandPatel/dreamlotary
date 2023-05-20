@@ -1,5 +1,6 @@
 <?php
 session_start();
+// error_reporting(0);
 date_default_timezone_set('Asia/Kolkata');
 $BASE_URL="website/index.php";
 // website file path on server
@@ -10,7 +11,7 @@ $BASE_URL="website/index.php";
 
 // website file path on localhost
 $URL="http://localhost/dreamlotary/api/src/";
-$USER_PROFILE_IMGPATH="http://localhost/dreamlotary/admin/image/user_profile/";
+$USER_PROFILE_IMGPATH="http://localhost/dreamlotary/user/image/user_profile/";
 
 $EXAM_NAME="UPPCL EXAMINATION";
 $HOME="website/index.php"; 
@@ -28,15 +29,23 @@ if($_SESSION["USER_ROLE"]=="")
 {
 $ROLE="";    
 }else if($_SESSION["USER_ROLE"]=="Admin"){
-$ROLE="user_registration_list,ticket_entry,ticket_list";    
+$ROLE="
+ticket_entry,ticket_list,purchased_ticket_list,result_list,user_profile,user_registration_list,
+user_account_list,user_payment_list";    
 }else if($_SESSION["USER_ROLE"]=="User"){
-$ROLE="user_registration_list,ticket_list,user_profile";    
+$ROLE="user_profile,ticket_list,purchased_ticket_list,purchase_ticket,result_list,
+user_payment_list";    
 }
 
 $USER_REGISTRATION_LIST="user_registration_list";
 $TICKET_ENTRY="ticket_entry";
 $TICKET_LIST="ticket_list";
-$USER_PROFILE="user_profile"; 
+$PURCHASED_TICKET_LIST="purchased_ticket_list";
+$RESULT_LIST="result_list"; 
+$USER_PROFILE="user_profile";
+$USER_ACCOUNT_LIST="user_account_list";
+$USER_PAYMENT_LIST="user_payment_list";
+$PURCHASE_TICKET="purchase_ticket";
 
 
 ?>

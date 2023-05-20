@@ -3,7 +3,7 @@ include "include/header.php";
 // try{
 $url = $URL."user/read_user_profile.php";
 $userType=$_SESSION["USER_TYPE"];
-$id=$_POST["userId"];
+$id=$_SESSION['USER_ID'];
 $data = array( "userType" =>$userType, "id"=>$id);
 //print_r($data);
 $postdata = json_encode($data);
@@ -107,43 +107,43 @@ $user_img=$USER_PROFILE_IMGPATH.$userid."/user_img_".$userid.".png";
                 <div class="card-body">
                 <div class="form-group">
                     <label>Account Holder*</label>
-                    <input type="text"  class="form-control" name="accountHolder" 
+                    <input type="text" style="text-transform:capitalize;" class="form-control" name="accountHolder" 
                     value="<?php echo $value1->accountHolder; ?>" placeholder="Account Holder" autocomplete="off" required>
                 </div>
 
                  <div class="form-group">
                     <label>Bank Name*</label>
-                    <input type="text"  class="form-control" name="bankName" 
+                    <input type="text" style="text-transform:capitalize;" class="form-control" name="bankName" 
                     value="<?php echo $value1->bankName; ?>" placeholder="Bank Name" autocomplete="off" required>
                 </div>
 
                 <div class="form-group">
                     <label>Branch Name*</label>
-                    <input type="text"  class="form-control" name="branchName" 
+                    <input type="text" style="text-transform:capitalize;" class="form-control" name="branchName" 
                     value="<?php echo $value1->branchName; ?>" placeholder="Branch Name" autocomplete="off" required>
                 </div>
 
 				        <div class="form-group">
                     <label>IFSC Code*</label>
-                    <input type="text"  class="form-control" name="ifscCode" 
+                    <input type="text" style="text-transform:uppercase;" class="form-control" name="ifscCode" 
                     value="<?php echo $value1->ifscCode; ?>" placeholder="IFSC Code" autocomplete="off" required>
                 </div>
 
 				        <div class="form-group">
                     <label for="exampleInputEmail1">Account No.*</label>
-                    <input type="text" class="form-control" name="accountNum" 
+                    <input type="number" class="form-control" name="accountNum" 
                     value="<?php echo $value1->accountNum; ?>" id="exampleInputtext" placeholder="Account No." autocomplete="off" required>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Phone Pay No.*</label>
-                    <input type="text" class="form-control" name="phonePayNum" 
+                    <input type="number" class="form-control" name="phonePayNum" 
                     value="<?php echo $value1->phonePayNum; ?>" id="exampleInputtext" placeholder="Phone Pay No." autocomplete="off" required>
                 </div>
 
                  <div class="form-group">
                     <label for="exampleInputEmail1">Google Pay No.*</label>
-                    <input type="text" class="form-control" name="googlePayNum" 
+                    <input type="number" class="form-control" name="googlePayNum" 
                     value="<?php echo $value1->googlePayNum; ?>" id="exampleInputtext" placeholder="Google Pay No." autocomplete="off" required>
                 </div>
 

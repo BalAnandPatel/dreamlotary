@@ -1,8 +1,9 @@
 <?php
-// error_reporting(0);
 include "include/header.php";
+  $userId=$_SESSION["USER_ID"];
+  $userType=$_SESSION["USER_TYPE"];
   $url = $URL."user/read_allusers_list.php";
-  $data = array( "status"=>"0");
+  $data = array( "userType"=>$userType, "userId"=>$userId);
 
   //print_r($data);
   $postdata = json_encode($data);
@@ -11,7 +12,7 @@ include "include/header.php";
   //curl_setopt($client, CURLOPT_POST, 5);
   curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
   $response = curl_exec($client);
-   //print_r($response);
+  //print_r($response);
   $result = json_decode($response);
   //print_r($result);
 

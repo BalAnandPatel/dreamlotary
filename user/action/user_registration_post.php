@@ -3,7 +3,7 @@ include '../../constant.php';
 
 if(isset($_POST["submit"])){
 
- $userName=ucfirst($_POST["userName"]);
+ $userName=ucwords($_POST["userName"]);
  $userType='2';
  $userRole="User";
  $status='1';
@@ -11,7 +11,7 @@ if(isset($_POST["submit"])){
  $userEmail=$_POST["userEmail"];
  $userPass=$_POST["userPass"];
  $createdOn=date("Y-m-d h:i:s");
- $createdBy=ucfirst($_POST["userName"]);
+ $createdBy=ucwords($_POST["userName"]);
 
  $url=$URL. "user/insert_user.php";
  $max_userid_url=$URL. "user/read_max_userid.php";

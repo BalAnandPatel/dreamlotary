@@ -1,6 +1,7 @@
 <?php
 include '../../constant.php';
 
+$ticketId=$_POST["ticketId"];
 $ticketAmount=$_POST["ticketAmount"];
 $lotteryNum=$_POST["lotteryNum"];
 $lotteryAmount=$_POST["lotteryAmount"];
@@ -23,6 +24,7 @@ $url = $URL . "payment/payment_entry.php";
 $url_read_maxId=$URL . "payment/read_maxId.php";
 
 $data = array(
+  "ticketId"=>$ticketId,
   "ticketAmount"=>$ticketAmount,
   "lotteryNum"=>$lotteryNum,
   "lotteryAmount"=>$lotteryAmount, 

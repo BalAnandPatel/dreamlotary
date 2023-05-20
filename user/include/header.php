@@ -1,7 +1,7 @@
- <?php 
- include "../constant.php";
- date_default_timezone_set('Asia/Kolkata');
-  ?>
+<?php 
+include "../constant.php";
+date_default_timezone_set('Asia/Kolkata');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,7 +126,7 @@
             </a>
             <ul class="nav nav-treeview">
             <?php
-              // if (strpos($ROLE, $TICKET_ENTRY) !== false) {
+              if (strpos($ROLE, $TICKET_ENTRY) !== false) {
             ?>
               <li class="nav-item">
                 <a href="ticket_entry.php" class="nav-link">
@@ -134,9 +134,19 @@
                   <p>Ticket Entry</p>
                 </a>
               </li>
-              <?php //} ?>
+              <?php } ?>
               <?php
-               //if (strpos($ROLE, $TICKET_LIST) !== false) {
+               if (strpos($ROLE, $TICKET_LIST) !== false) {
+              ?>
+               <li class="nav-item">
+                <a href="ticket_list.php" class="nav-link">
+                <i class="fas fa-arrow-alt-circle-right"></i>
+                  <p>Ticket List</p>
+                </a>
+              </li>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $PURCHASE_TICKET) !== false) {
               ?>
               <li class="nav-item">
                 <a href="purchase_ticket.php" class="nav-link">
@@ -144,25 +154,27 @@
                   <p>Purchase Ticket</p>
                 </a>
               </li>
-              <?php //} ?>
-               <li class="nav-item">
-                <a href="ticket_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Ticket List</p>
-                </a>
-              </li>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $PURCHASED_TICKET_LIST) !== false) {
+              ?>
               <li class="nav-item">
                 <a href="purchased_ticket_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Purchased Ticket List</p>
                 </a>
-              </li> 
+              </li>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $RESULT_LIST) !== false) {
+              ?> 
               <li class="nav-item">
                 <a href="result_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Result</p>
                 </a>
-              </li> 
+              </li>
+              <?php } ?> 
             </ul>
           </li>
           
@@ -176,7 +188,7 @@
             </a>
             <ul class="nav nav-treeview">
             <?php
-              // if (strpos($ROLE, $USER_PROFILE) !== false) {
+               if (strpos($ROLE, $USER_PROFILE) !== false) {
               ?>
               <li class="nav-item">
                 <a href="user_profile.php" class="nav-link">
@@ -184,63 +196,40 @@
                   <p>Update Profile</p>
                 </a>
               </li>
-              <?php //} ?>
+              <?php } ?>
               <?php
-                      //  if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
-                        ?>
+                if (strpos($ROLE, $USER_REGISTRATION_LIST) !== false) {
+              ?>
               <li class="nav-item">
                 <a href="user_registration_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>Registerd Users</p>
                 </a>
               </li>
-              <?php //} ?>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $USER_ACCOUNT_LIST) !== false) {
+              ?>
               <li class="nav-item">
                 <a href="user_account_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>User Acount Details</p>
                 </a>
-              </li> 
+              </li>
+              <?php } ?>
+              <?php
+               if (strpos($ROLE, $USER_PAYMENT_LIST) !== false) {
+              ?> 
               <li class="nav-item">
                 <a href="user_payment_list.php" class="nav-link">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                   <p>User Payment Details</p>
                 </a>
               </li>
+            <?php } ?>
             </ul>
           </li>
-          
-          <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fa fa-upload"></i>
-              <p> 
-                Media & Gallery
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              
-              <li class="nav-item">
-                <a href="upload_gallery_image.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Add Gallery images</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="gallery_record.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Gallery Records</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="exam_list.php" class="nav-link">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                  <p>Rejected Donation</p>
-                </a>
-              </li> 
-            </ul>
-          </li>
-         -->
+  
         
         </ul>
       </nav>

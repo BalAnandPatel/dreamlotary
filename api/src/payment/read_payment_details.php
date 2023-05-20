@@ -42,6 +42,7 @@ if($num>0){
         $payment_item=array(
 
             "userName" => $userName,
+            "ticketId"=>$ticketId,
             "userEmail"=>$userEmail,
             "userMobile"=>$userMobile,
             "userId"=>$userId,

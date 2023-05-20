@@ -15,8 +15,6 @@ include "include/header.php";
   //print_r($response);
   $result = json_decode($response);
   //print_r($result);
-  $id = $result->records[0]->id;
-  $slip_img = "image/uploads/".$id."/slip/Slip_".$id.".png";
   ?>
 
   <div class="content-wrapper">
@@ -68,7 +66,7 @@ include "include/header.php";
                     <th>Sr No.</th>
                     <th>User Name</th>
                     <th>Lottery Number</th>
-                    <th>lottery Amount</th>
+                    <th>Lottery Amount</th>
                     <th>Payment Slip No.</th>
                     <th>Payment Slip</th>
                     <th>Payment Mode</th>
@@ -84,6 +82,8 @@ include "include/header.php";
                      foreach($result as $key => $value){
                      foreach($value as $key1 => $value1)
                      {
+                     $id = $value1->id;
+                     $slip_img = "image/uploads/".$id."/slip/Slip_".$id.".png";
                   ?>  
                   <tr>          
                     <td><?php echo ++$counter; ?></td>
@@ -92,11 +92,11 @@ include "include/header.php";
                     <td><?php echo $value1->lotteryAmount; ?></td>
                     <td><?php echo $value1->slipNum; ?></td>
                     <td>
-                    <a href="#"><button class="btn btn-secondary btn-sm" type="button" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye mr-1"></i>View</button></a>
+                    <a href="<?php echo $slip_img; ?>" target="_blank "><button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-eye mr-1"></i>View</button></a>
                     </td>
                     <td><?php echo $value1->paymentMode; ?></td>
-                    <td><?php echo $value1->remark; ?></td>
-                    <td><?php if($value1->status==1) echo "Paid"; else echo "PENDING"; ?></td> 
+                    <td class="col-3"><?php echo $value1->remark; ?></td>
+                    <td><button type="button" class="btn btn-light rounded-0"><?php if($value1->status==1) echo "Paid"; else echo "Not Paid"; ?></button></td> 
                     <td class="col-md-2"><?php echo date('d-m-Y',strtotime($value1->createdOn)); ?></td>   
                   </tr>
                   <?php
@@ -132,7 +132,7 @@ include "include/header.php";
         </button>
       </div>
       <div class="modal-body">
-        <img src="<?php echo $slip_img ?>" alt="..." class="img-fluid img-thumbnail" width="100%">
+        <img src="<?php echo $slip_img; ?>" alt="..." class="img-fluid img-thumbnail" width="100%">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

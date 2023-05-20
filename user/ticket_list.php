@@ -84,7 +84,7 @@ $result = json_decode($response);
                     <td><?php echo $value1->ticketAmount; ?></td>
                     <td><?php echo $value1->lotteryAmount; ?></td>
                     <td><?php echo $value1->lotteryNum; ?></td>
-                    <td class="col-md-1">
+                    <td class="col-md-2">
                       <?php if($value1->status=='1'){?>
                       <button type="button" name="submit" class="btn btn-light btn-sm rounded-0">Not Purchased</button>
                       <?php }else if($value1->status=='2'){?>

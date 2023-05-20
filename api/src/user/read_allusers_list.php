@@ -20,6 +20,9 @@ $db = $database->getConnection();
 $read_allusers = new User($db);
   
 $data = json_decode(file_get_contents("php://input"));
+$read_allusers->userType = $data->userType;
+$read_allusers->userId = $data->userId;
+//print_r($data);
 
 $stmt = $read_allusers->readAllUsersDetail();
 $num = $stmt->rowCount();

@@ -46,6 +46,8 @@ if($num>0){
             "id"=>$id,
             "ticketId"=>$ticketId,
             "userId"=>$userId,
+            "paymentStatus"=>$paymentStatus,
+            "userName"=>$userName,
             "ticketId"=>$ticketId,
             "ticketAmount"=>$ticketAmount,
             "lotteryAmount"=>$lotteryAmount,

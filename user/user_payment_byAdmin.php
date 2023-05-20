@@ -165,11 +165,8 @@ cursor:pointer;
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Payment Mode*</label>
-                         <select name="paymentMode" class="form-control jb_1" required>
-                           <option value="">--Select Payment Mode---</option>
-                           <option value="Cash">Cash</option>
-                           <option value="Google Pay">Google Pay</option>
-                           <option value="Phone Pay">Phone Pay</option>
+                         <select name="paymentMode" class="form-control jb_1" readonly required>
+                           <option value="Online" selected>Online</option>
                          </select>
                       </div>
                      </div>
@@ -199,6 +196,7 @@ cursor:pointer;
                  </div>
                 <div class="card-footer text-center">
                   <input type="hidden" name="userId" value="<?php echo $value1->userId; ?>">
+                  <input type="hidden" name="ticketId" value="<?php echo $value1->ticketId; ?>">
                   <button type="submit" name="submit" class="btn btn-success">Payment Now</button>
                 </div>
                 <?php 

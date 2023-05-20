@@ -20,6 +20,7 @@
         $query="INSERT INTO
         " . $this->payment_history . "
     SET
+             ticketId=:ticketId,
              ticketAmount=:ticketAmount,
              lotteryNum=:lotteryNum,
              lotteryAmount=:lotteryAmount, 
@@ -40,6 +41,7 @@
 
         $stmt = $this->conn->prepare($query);
         $this->ticketAmount=htmlspecialchars(strip_tags($this->ticketAmount));
+        $this->ticketId=htmlspecialchars(strip_tags($this->ticketId));
         $this->lotteryNum=htmlspecialchars(strip_tags($this->lotteryNum));
         $this->lotteryAmount=htmlspecialchars(strip_tags($this->lotteryAmount));
         $this->userId=htmlspecialchars(strip_tags($this->userId));
@@ -58,6 +60,7 @@
 
 
         $stmt->bindParam(":ticketAmount", $this->ticketAmount);
+        $stmt->bindParam(":ticketId", $this->ticketId);
         $stmt->bindParam(":lotteryNum", $this->lotteryNum);
         $stmt->bindParam(":lotteryAmount", $this->lotteryAmount);
         $stmt->bindParam(":userId", $this->userId);
@@ -94,7 +97,7 @@
 
     public function readPaymentDetails(){
 
-        $query="Select userName,userEmail,userMobile,th.userId,accountHolder,accountNum,ifscCode,bankName,branchName,googlePayNum,phonePayNum,ticketAmount,lotteryAmount,lotteryNum from ticket_purchase as th left join user_login as ul on th.userId=ul.id left join user_account as ua on th.userId=ua.userId where th.status=3 and th.id=:id";
+        $query="Select userName,userEmail,userMobile,th.userId,accountHolder,accountNum,ifscCode,bankName,branchName,googlePayNum,phonePayNum,ticketId,ticketAmount,lotteryAmount,lotteryNum from ticket_purchase as th left join user_login as ul on th.userId=ul.id left join user_account as ua on th.userId=ua.userId where th.status=3 and th.id=:id";
         $stmt = $this->conn->prepare($query); 
         $stmt->bindParam(":id", $this->id);
         // $stmt->bindParam(":amount", $this->amount);

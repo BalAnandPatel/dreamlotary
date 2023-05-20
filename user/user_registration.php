@@ -35,7 +35,7 @@
 
       <form action="action/user_registration_post.php" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="userName" placeholder="Full name" autocomplete="off"  required>
+          <input type="text" style="text-transform:capitalize;" class="form-control" name="userName" placeholder="Full name" autocomplete="off"  required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="userEmail" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+          <input type="email" class="form-control" name="userEmail" placeholder="Email" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="userPass" placeholder="Password">
+          <input type="password" class="form-control" name="userPass" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

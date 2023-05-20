@@ -11,7 +11,7 @@
         $this->conn = $db;
     }
 
-    public $id, $userId, $userName, $userEmail, $userPass, $userMobile, $accountHolder, $bankName, $branchName, $ifscCode, $accountNum, $googlePayNum, $phonePayNum, $status, $createdOn, $createdBy, $updatedOn, $updatedBy;
+    public $id, $userId, $userType, $userName, $userEmail, $userPass, $userMobile, $accountHolder, $bankName, $branchName, $ifscCode, $accountNum, $googlePayNum, $phonePayNum, $status, $createdOn, $createdBy, $updatedOn, $updatedBy;
     
     public function readMaxUserId(){
         $query="Select max(id) as userId from " .$this->table_name;
@@ -32,10 +32,20 @@
     }
 
     public function readAllUsersDetail(){
+        if($this->userType=='1'){
+
         $query="Select user.id, userType, userRole, userName, userMobile, userEmail, user.status, user.createdOn, user.createdBy, accountHolder, bankName, branchName, ifscCode, accountNum, googlePayNum, phonePayNum
         from " .$this->table_name. " as user LEFT JOIN " .$this->user_account ." as ua ON user.id=ua.userId where user.status=1";
+
+        }else{
+
+        $query="Select user.id, userType, userRole, userName, userMobile, userEmail, user.status, user.createdOn, user.createdBy, accountHolder, bankName, branchName, ifscCode, accountNum, googlePayNum, phonePayNum
+        from " .$this->table_name. " as user LEFT JOIN " .$this->user_account ." as ua ON user.id=ua.userId where user.status=1 and userId=:userId";
+
+        }
+
         $stmt = $this->conn->prepare($query); 
-        // $stmt->bindParam(":exam_name", $this->exam_name);
+        $stmt->bindParam(":userId", $this->userId);
         $stmt->execute();
         return $stmt;
     }
@@ -196,30 +206,6 @@
         return false;
           
     }
-
-
-   function delete_exam(){
-  
-    // delete query
-    $query = " DELETE FROM " . $this->table_name . " 
-    WHERE id= ? ";
-  
-    // prepare query
-    $stmt = $this->conn->prepare($query);
-  
-    // sanitize
-    $this->id=htmlspecialchars(strip_tags($this->id));
-  
-    // bind id of record to delete
-    $stmt->bindParam(1, $this->id);
-  
-    // execute query
-    if($stmt->execute()){
-        return true;
-    }
-  
-    return false;
-}
 
 
  }
