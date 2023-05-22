@@ -1,6 +1,9 @@
 <?php 
 include "../constant.php";
 date_default_timezone_set('Asia/Kolkata');
+if(!isset($_SESSION["USER_ID"])){
+header('location:index.php');  
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">

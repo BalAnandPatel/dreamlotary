@@ -1,3 +1,9 @@
+<?php
+include "../constant.php";
+if(isset($_SESSION["USER_ID"])){
+header('location:adm_dashboard.php');  
+} 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
