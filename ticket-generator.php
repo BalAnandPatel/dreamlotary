@@ -35,38 +35,7 @@
 						</div>
 					</div>
 				</div>
-				<marquee class="tickerBox" truespeed scrollamount="2" scrolldelay="20" style="background-color: lightgrey; height: 30px;">
-					<div class="inner">
-						<div class="text">
-							<p>Time remaining to play in the next Dream Lotary draw: <strong style="color: #F90" id="topTimer">0 days 00:00:00</strong> - <a href="play.php" title="Play Dream Lotary online today" id="headerPlay">Play Online</a></p>
-							<script>
-								addLoadEvent(function(){topTimer()});
-								function topTimer() {
-									var obj = document.getElementById("topTimer");
-									var objPlay = document.getElementById("headerPlay");
-									var sec = 1000, min = sec * 60, hour = min * 60, day = hour * 24;
-									var date = new Date("2023-05-09T13:20:00");
-									var date2 = new Date("2023-05-09T12:30:00");
-									date.setSeconds(date.getSeconds());
-									date2.setSeconds(date2.getSeconds());
-									var dateTime = date.getTime(), dateTime2 = date2.getTime();
-									var now = new Date().getTime(), r = dateTime - now, r2 = dateTime2 - now;
-									var days = Math.floor(r/day), hours = Math.floor((r%day)/hour), mins = Math.floor((r%hour)/min), secs = Math.floor((r%min)/sec);
-									if (r > 0) {
-										obj.innerHTML = days + (days == 1 ? " day " : " days ") + ("0" + hours).slice(-2) + ":" + ("0" + mins).slice(-2) + ":" + ("0" + secs).slice(-2);
-										setTimeout("topTimer()",sec);
-									} else if (r2 > 0) {
-										obj.innerHTML = "Tickets sales closed, tonight's draw will start soon!";
-										objPlay.innerHTML = "Play in the Next Draw"
-									} else {
-										obj.innerHTML = "DRAW IN PROGRESS!";
-										objPlay.innerHTML = "Play in the Next Draw"
-									}
-								};
-							</script>
-						</div>
-					</div>
-				</marquee>
+	
 			</div>
 			
 		</div>

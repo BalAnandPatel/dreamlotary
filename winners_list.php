@@ -58,19 +58,19 @@ $result = json_decode($response);
 <p>What would you do if you won the Dream Lotary jackpot? Get in touch and tell us why you love to play and how you would spend the prize money. Drop us a line on our social channels or send us an email describing your favourite things about the game, and we’ll add you to our list of biggest Dream Lotary fans.</p>
 
 <div class="fx socialBottom">
-	<a href="#" title="Visit the Dream Lotary Facebook page" class="social" target="_blank" rel="noopener">
+	<a href="#" title="Visit the Dream Lotary Facebook page" class="social"  rel="noopener">
 		<img src="images/icons/facebook.svg" alt="Facebook"><br>
 		Like us on Facebook
 	</a>
-	<a href="#" title="Visit the Dream Lotary Instagram page" class="social" target="_blank" rel="noopener">
+	<a href="#" title="Visit the Dream Lotary Instagram page" class="social" rel="noopener">
 		<img src="images/icons/instagram.svg" alt="Instagram"><br>
 		Like us on Instagram
 	</a>
-	<a href="#" title="Visit the Dream Lotary Twitter page" class="social" target="_blank" rel="noopener">
+	<a href="#" title="Visit the Dream Lotary Twitter page" class="social"  rel="noopener">
 		<img src="images/icons/twitter.svg" alt="Twitter"><br>
 		Follow us on Twitter
 	</a>
-	<a href="#" title="Email Dream Lotary" class="social" target="_blank" rel="noopener">
+	<a href="#" title="Email Dream Lotary" class="social"  rel="noopener">
 		<img src="images/icons/mail.svg" alt="Email"><br>
 		Email
 	</a>
