@@ -1,4 +1,21 @@
-<?php include "include/header.php"; ?>
+<?php
+include "include/header.php";
+
+$url = $URL."ticket/read_release_result.php";
+$status=3;
+$userType='1';
+$userId="";
+$data = array("status"=>$status, "userId"=>$userId, "userType"=>$userType);
+//print_r($data);
+$postdata = json_encode($data);
+$client = curl_init($url);
+curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
+$response = curl_exec($client);
+//print_r($response);
+$result = json_decode($response);
+//print_r($result);
+?>
 <head>
 	
 <style type="text/css">	
@@ -49,7 +66,7 @@
 						</div>
 					</div>
 				</div>
-				<marquee class="tickerBox" truespeed scrollamount="2" scrolldelay="20" style="background-color: lightgrey; height: 30px;">
+				<!-- <marquee class="tickerBox" truespeed scrollamount="2" scrolldelay="20" style="background-color: lightgrey; height: 30px;">
 					<div class="inner">
 						<div class="text">
 							<p>Time remaining to play in the next Dream Lotary draw: <strong style="color: #F90" id="topTimer">0 days 00:00:00</strong> - <a href="play.php" title="Play Dream Lotary online today" id="headerPlay">Play Online</a></p>
@@ -80,7 +97,7 @@
 							</script>
 						</div>
 					</div>
-				</marquee>
+				</marquee> -->
 			</div>
 			
 		</div>
@@ -109,11 +126,11 @@
 
 <h1>Results</h1>
 
-<p>The latest Dream Lotary results are displayed here straight after every draw, on Tuesdays and Fridays at 6:00 PM. View the six winning numbers and the Joker Ball to see if you have won the jackpot or one of the other prizes on offer. If you've matched enough numbers to win a prize, head to the <a href="/how-to-claim-prizes" title="Claiming Your Prize">How to Claim Prizes</a> page to find out what happens next.</p>
+<p>The latest Dream Lotary results are displayed here straight after every draw, on Tuesdays and Fridays at 6:00 PM. View the six winning numbers and the Joker Ball to see if you have won the jackpot or one of the other prizes on offer. If you've matched enough numbers to win a prize, head to the <a href="#" title="Claiming Your Prize">How to Claim Prizes</a> page to find out what happens next.</p>
 
 </div>
 
-<div class="genBox mBottom resultsBox latest fx -md">
+<!-- <div class="genBox mBottom resultsBox latest fx -md">
 
 <div class="col inner">
 
@@ -148,7 +165,7 @@
 </div>
 
 </div>
-
+ -->
 
 
 <div class="centred">
@@ -168,7 +185,7 @@
 
 		<div class="col">
 			
-				<a href="/en/play/lotto-india" title="Choose Dream Lotary Numbers online" class="button" id="nextPlayButton696" rel="nofollow noopener" target="_blank">Play Now</a>
+				<a href="#" title="Choose Dream Lotary Numbers online" class="button" onclick="goLogin()">Play Now</a>
 			
 		</div>
 
@@ -182,7 +199,7 @@
 
 	
 	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
+		<!-- 	<div class="genBox mBottom resultsBox colHalf resultcard">
 
 				<div class="row fx -bt -al">
 					<div class="date">Tuesday, <span class="smallerHeading">May 2, 2023</span></div>
@@ -206,213 +223,40 @@
 					<div class="ball joker">5</div>
 				</div>
 	
-			</div>
+			</div> -->
 		
-		
+		   <?php 
+                       
+                     $counter=0;  
+                     foreach($result as $key => $value){
+                     foreach($value as $key1 => $value1)
+                    {
+
+                  ?>
 	
 			<div class="genBox mBottom resultsBox colHalf resultcard">
 
 				<div class="row fx -bt -al">
-					<div class="date">Friday, <span class="smallerHeading">April 28, 2023</span></div>
-					<div class="drawNumber">Draw <span>#405</span></div>
+					<div class="date"><?php echo date('l',strtotime($value1->createdOn)); ?>, <span class="smallerHeading"><?php echo date('M d, Y',strtotime($value1->createdOn)); ?></span></div>
+					<div class="drawNumber">Draw <span>#<?php echo $value1->id; ?></span></div>
 				</div>
 	
-				<div class="padded">
-					
-						<div class="ball">18</div>
-					
-						<div class="ball">19</div>
-					
-						<div class="ball">25</div>
-					
-						<div class="ball">26</div>
-					
-						<div class="ball">28</div>
-					
-						<div class="ball">38</div>
-					
-					<div class="ball joker">1</div>
+				<div class="padded">	
+						<div class="alert text-white bg-success"><?php echo $value1->lotteryNum; ?></div>
 				</div>
 	
 			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Tuesday, <span class="smallerHeading">April 25, 2023</span></div>
-					<div class="drawNumber">Draw <span>#404</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">10</div>
-					
-						<div class="ball">13</div>
-					
-						<div class="ball">15</div>
-					
-						<div class="ball">32</div>
-					
-						<div class="ball">43</div>
-					
-						<div class="ball">49</div>
-					
-					<div class="ball joker">2</div>
-				</div>
-	
-			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Friday, <span class="smallerHeading">April 21, 2023</span></div>
-					<div class="drawNumber">Draw <span>#403</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">8</div>
-					
-						<div class="ball">10</div>
-					
-						<div class="ball">26</div>
-					
-						<div class="ball">27</div>
-					
-						<div class="ball">34</div>
-					
-						<div class="ball">38</div>
-					
-					<div class="ball joker">5</div>
-				</div>
-	
-			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Tuesday, <span class="smallerHeading">April 18, 2023</span></div>
-					<div class="drawNumber">Draw <span>#402</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">8</div>
-					
-						<div class="ball">14</div>
-					
-						<div class="ball">28</div>
-					
-						<div class="ball">38</div>
-					
-						<div class="ball">43</div>
-					
-						<div class="ball">48</div>
-					
-					<div class="ball joker">1</div>
-				</div>
-	
-			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Friday, <span class="smallerHeading">April 14, 2023</span></div>
-					<div class="drawNumber">Draw <span>#401</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">17</div>
-					
-						<div class="ball">24</div>
-					
-						<div class="ball">30</div>
-					
-						<div class="ball">36</div>
-					
-						<div class="ball">39</div>
-					
-						<div class="ball">41</div>
-					
-					<div class="ball joker">1</div>
-				</div>
-	
-			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Tuesday, <span class="smallerHeading">April 11, 2023</span></div>
-					<div class="drawNumber">Draw <span>#400</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">1</div>
-					
-						<div class="ball">6</div>
-					
-						<div class="ball">8</div>
-					
-						<div class="ball">9</div>
-					
-						<div class="ball">34</div>
-					
-						<div class="ball">50</div>
-					
-					<div class="ball joker">4</div>
-				</div>
-	
-			</div>
-		
-		
-	
-			<div class="genBox mBottom resultsBox colHalf resultcard">
-
-				<div class="row fx -bt -al">
-					<div class="date">Friday, <span class="smallerHeading">April 7, 2023</span></div>
-					<div class="drawNumber">Draw <span>#399</span></div>
-				</div>
-	
-				<div class="padded">
-					
-						<div class="ball">9</div>
-					
-						<div class="ball">16</div>
-					
-						<div class="ball">20</div>
-					
-						<div class="ball">41</div>
-					
-						<div class="ball">44</div>
-					
-						<div class="ball">46</div>
-					
-					<div class="ball joker">3</div>
-				</div>
-	
-			</div>
+          <?php } } ?>	
 		
 		
 
 </div>
 
 
-
+<!-- 
 <div class="row fx -md -ar mBottom centred">
 <a href="results.php" title="Past Dream Lotary Results" class="button">View Previous Results</a> 
-</div>
+</div> -->
 
 
 </div>

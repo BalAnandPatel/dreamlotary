@@ -217,14 +217,15 @@
 		</div>
 	
 	
-		<input type="submit" value="Choose These Numbers" class="button green">
+		<!-- <input type="submit" value="Choose These Numbers" class="button green"> -->
+		<button type="button" class="btn btn-lg btn-success mt-2">Choose These Numbers</button>
 	
 
 </form>
 
 </div>
 
-<p>Please note that your entries will not be valid until they have been paid for or you have activated a <a href="prizes.php" title="Dream Lotary Prizes">Free Bet Bonus</a> from a previous draw.</p>
+<p>Please note that your entries will not be valid until they have been paid for or you have activated a <a href="#" title="Dream Lotary Prizes">Free Bet Bonus</a> from a previous draw.</p>
 
 </div>
 

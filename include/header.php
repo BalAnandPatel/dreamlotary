@@ -1,4 +1,6 @@
-<?php include "constant.php"; ?>
+<?php 
+include "constant.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,15 +68,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="about.php"> About </a>
                 </li>
-                <li class="nav-item">
+              <!--   <li class="nav-item">
                   <a class="nav-link" href="play.php"> Play Online </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="results.php"> Result </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="check-numbers.php"> Check Tickets </a>
-                </li>
+                <!--   <li class="nav-item">
+                    <a class="nav-link" href="check-numbers.php"> Check Tickets </a>
+                  </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="ticket-generator.php"> Ticket Generator </a>
                 </li>
@@ -90,11 +92,11 @@
                       <a href="hot-and-cold-numbers.php">Statics</a>
                     </div>
                 </li>
-                <li class="nav-item">
+            <!--     <li class="nav-item">
                   <a class="nav-link" href="bumper-draw.php"> Bumper Draws </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="winners.php"> Winners </a>
+                  <a class="nav-link" href="winners_list.php"> Winners </a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="payment.php"> Payment </a>
@@ -103,7 +105,7 @@
                   <a class="nav-link" href="lottery.php">Lottery</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" onclick="goLogin()" href="#"><i class="fa-solid fa-user"></i> Login </a>
+                  <a class="nav-link" onclick="goLogin().target='_blank';" href="#"><i class="fa-solid fa-user"></i> Login </a>
                 </li>
               </ul>
             </div>

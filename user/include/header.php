@@ -185,7 +185,7 @@ header('location:index.php');
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-circle"></i>
               <p>
-                User's Detaill
+                User's Detail
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

@@ -15,7 +15,7 @@
   </section>
   <script>
   function goLogin(){
-   window.location="user/index.php";
+   window.open('user/index.php', '_blank');
   }
   </script>
 </body>
